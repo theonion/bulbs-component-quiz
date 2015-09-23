@@ -1,6 +1,5 @@
 'use strict';
 
-
 angular.module('bulbs.quiz.edit', [])
 .directive('quizEdit', [
   function() {
