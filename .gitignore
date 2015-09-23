@@ -1,0 +1,18 @@
+##########
+# python #
+##########
+*.pyc
+*.egg-info
+
+########
+# node #
+########
+.tmp
+dist
+node_modules
+bower_components
+
+#######
+# etc #
+#######
+.DS_Store
