@@ -6,7 +6,7 @@
             <div class="panel-heading">
                 <a class="pull-left panel-title" data-toggle="collapse" data-parent="#question{% verbatim %}{{ question.id }}{% endverbatim %}" href="#ans{% verbatim %}{{ answer.id }}{% endverbatim %}">
                     <strong>Answer {{ $index + 1 }}<span ng-if="answer.body">:</span></strong>
-                    <span ng-bind-html="formatAnswerTitle(answer) | truncateByWords:7"></span>
+                    <span ng-bind-html="answer | quizANswerTitle"></span>
                 </a>
                 <div class="pull-right btn-toolbar">
                     <div class="btn-group">

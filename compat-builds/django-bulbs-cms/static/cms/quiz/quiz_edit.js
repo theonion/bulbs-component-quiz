@@ -95,10 +95,6 @@ angular.module('bulbs.quiz.edit', [])
               }
             }
           };
-          // This should probably be a filter
-          $scope.formatAnswerTitle = function (answer) {
-            return answer.body || 'Answer #' + (answer._order + 1);
-          };
         });
       ]
     };

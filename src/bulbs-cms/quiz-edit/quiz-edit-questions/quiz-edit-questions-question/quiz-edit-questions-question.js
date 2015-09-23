@@ -1,9 +1,10 @@
 'use strict';
 
-angular.module('cms.editPages.quizQuestion', [
-  'cms.editPages.quizQuestions'
+angular.module('bulbs.quiz.edit.questions.question', [
+  'bulbs.quiz.questions.question.answer',
+  'bulbs.quiz.questions.question.answer.filters.title'
 ])
-    .directive('quizQuestion', function () {
+    .directive('quizEditQuestionsQuestion', function () {
       return {
         replace: true,
         restrict: 'E',

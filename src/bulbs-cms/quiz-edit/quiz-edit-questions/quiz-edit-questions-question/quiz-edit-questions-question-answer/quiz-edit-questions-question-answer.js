@@ -1,13 +1,11 @@
 'use strict';
 
-angular.module('cms.editPages.quizOutcome', [
-  'cms.editPages.quizOutcomes'
-])
-    .directive('quizOutcome', function () {
+angular.module('bulbs.quiz.questions.question.answer', [])
+    .directive('quizAnswer', function () {
       return {
         replace: true,
         restrict: 'E',
-        templateUrl: 'components/edit-pages/quiz/quiz-outcome.html',
+        templateUrl: 'components/edit-pages/quiz/quiz-answer.html',
         controller: 'QuizEditCtrl',
         scope: {
           'article': '=',

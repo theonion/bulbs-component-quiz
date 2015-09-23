@@ -1,7 +1,9 @@
 'use strict';
 
-angular.module('cms.editPages.quizOutcomes', [])
-    .directive('quizOutcomes', function () {
+angular.module('bulbs.quiz.edit.outcomes', [
+  'bulbs.quiz.edit.outcomes.outcome'
+])
+    .directive('quizEditOutcomes', function () {
       return {
         replace: true,
         restrict: 'E',
