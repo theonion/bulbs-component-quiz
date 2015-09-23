@@ -61,18 +61,17 @@ Django's settings file.
 
 1. Add ```bulbs.quiz``` as a dependency for your CMS's Angular app.
 
-
-## django-bulbs-cms Package
-```compat-builds/django-bulbs-cms``` should not be edited directly. This app exists only until
-CMS files are completely migrated out of django. To make changes to this package,
-edit files located in ```src/bulbs-cms``` then run ```grunt build_bulbs_cms_for_django```
-to rebuild ```compat-builds/django-bulbs-cms``` with your changes.
-
-Commit your changes and the rebuilt package, then reinstall the app on whatever
-project(s) require the changes.
-
 ## Development
 To work on this project, install all requirements:
 ```bash
 $ npm install && bower install
 ```
+
+### django-bulbs-cms Package
+```compat-builds/django-bulbs-cms``` should not be edited directly. This app exists only until
+CMS files are completely migrated out of django. To make changes to this package,
+edit files located in ```src/bulbs-cms``` then run ```npm run build_cms_for_django```
+to rebuild ```compat-builds/django-bulbs-cms``` with your changes.
+
+Commit your changes and the rebuilt package, then reinstall the app on whatever
+project(s) require the changes.

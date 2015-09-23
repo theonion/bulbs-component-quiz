@@ -24,7 +24,7 @@
   );
 
   grunt.registerTask(
-    'build_bulbs_cms_for_django',
+    'build_cms_for_django',
     'Convert bulbs-cms project to pre-cms-separation django app.',
     [
       // clean out old files
@@ -43,5 +43,5 @@
       'clean:tmp'
     ]
   );
-  
+
  };

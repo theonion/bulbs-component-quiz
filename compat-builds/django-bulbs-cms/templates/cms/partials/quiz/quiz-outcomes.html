@@ -1,0 +1,36 @@
+<div>
+    <ul class="quiz-outcomes">
+        <li class="panel panel-default" ng-repeat="outcome in article.outcome_set">
+
+            <div class="panel-heading">
+                <a class="pull-left panel-title">
+                    <strong>Result {{ $index + 1 }}<span ng-if="outcome.title">:</span></strong>
+                    <span ng-bind-html="outcome.title | truncateByWords:7"></span>
+                </a>
+                <div class="pull-right btn-toolbar">
+                    <div class="btn-group">
+                        <button class="btn btn-xs btn-link" ng-click="onMoveListObject(article.outcome_set, $index, $index - 1)"  ng-disabled="$index == 0">
+                            <span class="glyphicon glyphicon-chevron-up"></span>
+                        </button>
+                        <button class="btn btn-xs btn-link" ng-click="onMoveListObject(article.outcome_set, $index, $index + 1)" ng-disabled="$last">
+                            <span class="glyphicon glyphicon-chevron-down"></span>
+                        </button>
+                    </div>
+                    <div class="btn-group">
+                        <button class="btn btn-xs btn-link" title="Delete outcome" ng-confirm-click="Are you sure you want to delete this? This action cannot be reversed." confirmed-click="onDeleteOutcome(outcome)">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <quiz-outcome article="article" outcome="outcome"></quiz-outcome>
+
+        </li>
+    </ul>
+    <div class="row text-center">
+        <button class="btn btn-primary btn-lg" ng-click="onAddOutcome()">
+            <span class="glyphicon glyphicon-plus"></span> Add A Result
+        </button>
+    </div>
+</div>
