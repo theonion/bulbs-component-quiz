@@ -43,32 +43,6 @@ angular.module('bulbs.quiz.edit', [
               });
             };
 
-            $scope.onAddOutcome = function () {
-              var outcome = QuizApi.restangularizeElement(null, {
-                title: '',
-                quiz: $scope.article.id,
-                body: '',
-                shareable: false,
-                min_score: 0,
-                require_perfect: false
-              }, 'outcome');
-              outcome.post().then(function (outcome) {
-                var outcomeSet = $scope.article.outcome_set;
-                outcomeSet.push(outcome);
-              });
-            };
-
-            $scope.onDeleteOutcome = function (outcome) {
-              outcome_ra = QuizApi.restangularizeElement(null, outcome, 'outcome');
-              outcome_ra.remove().then(function () {
-                var outcomeSet = $scope.article.outcome_set;
-                var idx = outcomeSet.indexOf(outcome);
-                if (idx >= 0) {
-                  outcomeSet.splice(idx, 1);
-                }
-              });
-            };
-
             $scope.onAddQuestion = function () {
               var question = QuizApi.restangularizeElement(null, {
                 quiz: $scope.article.id,
