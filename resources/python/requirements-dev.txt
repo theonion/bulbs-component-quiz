@@ -1,1 +1,2 @@
 -e .[dev]
+djangorestframework-jwt==1.7.2

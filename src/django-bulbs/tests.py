@@ -13,10 +13,10 @@ User = get_user_model()
 
 class QuizTests(TestCase):
 
-    quiz = reverse('api:quiz-list')
-    answer = reverse('api:answer-list')
-    outcome = reverse('api:outcome-list')
-    question = reverse('api:question-list')
+    quiz = reverse('quiz-list')
+    answer = reverse('answer-list')
+    outcome = reverse('outcome-list')
+    question = reverse('question-list')
 
     def setUp(self):
         self.client = APIClient()
