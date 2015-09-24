@@ -2,11 +2,11 @@
   <section>
     <div
         class="form-group"
-        ng-show="article.quizStyle === 'test'">
+        ng-show="quiz.quizStyle === 'test'">
       <label>
         <input
             type="checkbox"
-            ng-model="article.show_all_answers">
+            ng-model="quiz.show_all_answers">
         <span>Reveal Other Answers After Answering</span>
       </label>
     </div>
@@ -14,25 +14,25 @@
       <label>Customize Result Button Text:</label>
       <input
           type="text"
-          ng-model="article.result_button_text">
+          ng-model="quiz.result_button_text">
       <span class="text-muted">(Optional: Defaults to "Get Results")</span>
     </div>
   </section>
 
   <section>
     <quiz-edit-outcomes
-        article-id="article.id"
-        outcomes="article.outcomes"
-        quiz-style="article.quizStyle">
+        article-id="quiz.id"
+        outcomes="quiz.outcomes"
+        quiz-style="quiz.quizStyle">
     </quiz-edit-outcomes>
   </section>
 
   <section>
     <quiz-questions
-        article-id="article.id"
-        questions="article.question_set"
-        outcomes="article.outcomes"
-        quiz-style="article.quizStyle">
+        article-id="quiz.id"
+        questions="quiz.question_set"
+        outcomes="quiz.outcomes"
+        quiz-style="quiz.quizStyle">
     </quiz-questions>
   </section>
 </div>

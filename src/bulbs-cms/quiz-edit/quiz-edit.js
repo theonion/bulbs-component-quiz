@@ -1,6 +1,7 @@
 'use strict';
 
 angular.module('bulbs.quiz.edit', [
+  'bulbs.quiz.api.quiz',
   'bulbs.quiz.edit.outcomes',
   'bulbs.quiz.edit.questions'
 ])
@@ -10,25 +11,14 @@ angular.module('bulbs.quiz.edit', [
         restrict: 'E',
         templateUrl: 'bulbs/quiz-edit/quiz-edit.html',
         scope: {
-          article: '=',
-          saveArticleDeferred: '='
+          articleId: '='
         },
         controller: [
-          '_', '$', '$scope', '$window', '$timeout',
-          function (_, $, $scope, $window, $timeout) {
-
-
-            $scope.onDeleteQuestion = function (question) {
-              var question_ra = QuizApi.restangularizeElement(null, question, 'question');
-              question_ra.remove().then(function () {
-                var questionSet = $scope.article.question_set;
-                var idx = questionSet.indexOf(question);
-                if (idx >= 0) {
-                  questionSet.splice(idx, 1);
-                }
-              });
-            };
-
+          '$scope',
+          function ($scope) {
+            // HACK : get article as restmod object, change when $scope.article is
+            //  available as a restmod object
+            $scope.quiz = Quiz.$find(articleId);
           });
         ]
       };
