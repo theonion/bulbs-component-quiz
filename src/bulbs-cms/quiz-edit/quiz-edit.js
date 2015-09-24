@@ -14,12 +14,12 @@ angular.module('bulbs.quiz.edit', [
           articleId: '='
         },
         controller: [
-          '$scope',
-          function ($scope) {
+          '$scope', 'Quiz',
+          function ($scope, Quiz) {
             // HACK : get article as restmod object, change when $scope.article is
             //  available as a restmod object
-            $scope.quiz = Quiz.$find(articleId);
-          });
+            $scope.quiz = Quiz.$find($scope.articleId);
+          }
         ]
       };
     }

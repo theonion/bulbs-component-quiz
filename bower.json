@@ -3,6 +3,9 @@
   "description": "Frontend dependencies for Quiz component.",
   "version": "0.0.1",
   "private": true,
+  "main": [
+    "compat-builds/bulbs-cms-dist/quiz.js"
+  ],
   "ignore": [
     "compat-builds",
     "resources",
@@ -15,5 +18,6 @@
   "dependencies": {
     "bulbs-public-analytics-manager": "https://0469c955e10241b40fffe0225e29a3c238aadf69:x-oauth-basic@github.com/theonion/bulbs-public-analytics-manager.git#~0.0.1",
     "font-awesome": "~4.4.0"
-  }
+  },
+  "devDependencies": {}
 }

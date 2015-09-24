@@ -3,8 +3,7 @@
 angular.module('bulbs.quiz.api.answer', [
   'restmod'
 ])
-  .factory('QuizAnswer', [
-    'restmod',
+  .factory('QuizAnswer',
     function (restmod) {
 
       return restmod.model('answer').mix('NestedDirtyModel', {
@@ -32,5 +31,5 @@ angular.module('bulbs.quiz.api.answer', [
           init: 1
         }
       });
-    }]
+    }
   );

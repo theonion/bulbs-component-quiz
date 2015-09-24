@@ -20,7 +20,7 @@ angular.module('bulbs.quiz.edit.outcomes', [
             };
 
             $scope.outcomeAdd = function () {
-              $scope.outcomes.$create({quiz: articleId});
+              $scope.outcomes.$create({quiz: $scope.articleId});
             };
           }
         ],

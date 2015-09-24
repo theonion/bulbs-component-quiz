@@ -4,22 +4,22 @@
 'use strict';
 
 module.exports = {
-  bulbs_cms_to_django_app_pre_1_scripts: {
-    dest: '.tmp/django-bulbs-cms-pre-1/static/cms/quiz',
+  bulbs_cms_dist_scripts_to_pre_1: {
     src: 'src/bulbs-cms/**/*.js',
+    dest: '.tmp/bulbs-cms-dist-pre-1/scripts',
     expand: true,
     flatten: true
   },
-  bulbs_cms_to_django_app_pre_1_styles: {
-    dest: '.tmp/django-bulbs-cms-pre-1/static/cms/quiz',
-    src: 'src/bulbs-cms/**/*.less',
+  bulbs_cms_dist_tmp_to_dist: {
+    src: '.tmp/bulbs-cms-dist/*',
+    dest: 'compat-builds/bulbs-cms-dist',
     expand: true,
     flatten: true
   },
-  bulbs_cms_to_django_app_complete: {
-    cwd: '.tmp/django-bulbs-cms-pre-1',
-    dest: 'compat-builds/django-bulbs-cms',
-    src: '**',
-    expand: true
+  bulbs_cms_dist_to_django_bulbs_cms: {
+    src: 'compat-builds/bulbs-cms-dist/*',
+    dest: 'compat-builds/django-bulbs-cms/static/cms/quiz/',
+    expand: true,
+    flatten: true
   }
 };

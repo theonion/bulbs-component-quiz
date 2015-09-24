@@ -20,7 +20,7 @@ angular.module('bulbs.quiz.edit.questions', [
             };
 
             $scope.questionAdd = function () {
-              $scope.questions.$create({quiz: articleId});
+              $scope.questions.$create({quiz: $scope.articleId});
             };
           }
         ],

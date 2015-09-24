@@ -26,7 +26,7 @@ angular.module('bulbs.quiz.api.question', [
         },
         outcome: {
           init: null
-        }
+        },
         quiz: {
           init: null
         }
