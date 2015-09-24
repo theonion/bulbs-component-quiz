@@ -12,6 +12,24 @@ angular.module('bulbs.quiz.api.outcome', [
           name: 'QuizOutcome',
           plural: 'QuizOutcomes',
           primaryKey: 'id'
+        },
+        title: {
+          init: ''
+        },
+        body: {
+          init: ''
+        },
+        sharable: {
+          init: false
+        },
+        minScore: {
+          init: 0
+        },
+        quiz: {
+          init: null
+        },
+        requirePerfect: {
+          init: false
         }
       });
     }]

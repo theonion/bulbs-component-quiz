@@ -12,34 +12,15 @@ angular.module('bulbs.quiz.edit.outcomes', [
           function ($scope, Utils) {
 
             $scope.outcomeMove = function (index, indexTo) {
-              Utils.moveTo(outcomes, index, indexTo);
+              Utils.moveTo($scope.outcomes, index, indexTo);
             };
 
             $scope.outcomeDelete = function (outcome, index) {
-              QuizApi
-                .restangularizeElement(null, outcome, 'outcome')
-                .remove()
-                .then(function () {
-                  Utils.removeFrom(outcomes.outcome_set, index);
-                });
+              outcome.$destroy();
             };
 
             $scope.outcomeAdd = function () {
-              var outcomeData = {
-                title: '',
-                quiz: articleId,
-                body: '',
-                shareable: false,
-                min_score: 0,
-                require_perfect: false
-              };
-
-              QuizApi
-                .restangularizeElement(null, outcomeData, 'outcome')
-                .post()
-                .then(function (outcome) {
-                  outcomes.push(outcome);
-                });
+              $scope.outcomes.$create({quiz: articleId});
             };
           }
         ],
