@@ -8,7 +8,7 @@ angular.module('bulbs.quiz.edit', [
     function () {
       return {
         restrict: 'E',
-        templateUrl: '/cms/partials/quiz/quiz-edit.html',
+        templateUrl: 'bulbs/quiz-edit/quiz-edit.html',
         scope: {
           article: '=',
           saveArticleDeferred: '='
@@ -17,45 +17,6 @@ angular.module('bulbs.quiz.edit', [
           '_', '$', '$scope', '$window', '$timeout',
           function (_, $, $scope, $window, $timeout) {
 
-            $scope.onAddAnswer = function (question) {
-              var answer = QuizApi.restangularizeElement(null, {
-                question: question.id,
-                body: '',
-                outcome: null,
-                is_correct: false,
-                explanation: '',
-                points: 1
-              }, 'answer');
-              answer.post().then(function (answer) {
-                var answerSet = question.answer_set;
-                answerSet.push(answer);
-              });
-            };
-
-            $scope.onDeleteAnswer = function (question, answer) {
-              answer_ra = QuizApi.restangularizeElement(null, answer, 'answer');
-              answer_ra.remove().then(function () {
-                var answerSet = question.answer_set;
-                var idx = answerSet.indexOf(answer);
-                if (idx >= 0) {
-                  answerSet.splice(idx, 1);
-                }
-              });
-            };
-
-            $scope.onAddQuestion = function () {
-              var question = QuizApi.restangularizeElement(null, {
-                quiz: $scope.article.id,
-                body: '',
-                post_answer_body: '',
-                answer_set: [],
-                outcome: null
-              }, 'question');
-              question.post().then(function (question) {
-                var questionSet = $scope.article.question_set;
-                questionSet.push(question);
-              });
-            };
 
             $scope.onDeleteQuestion = function (question) {
               var question_ra = QuizApi.restangularizeElement(null, question, 'question');
@@ -68,17 +29,6 @@ angular.module('bulbs.quiz.edit', [
               });
             };
 
-            $scope.onMoveListObject = function (objList, startIndex, newIndex) {
-              if (startIndex >= 0 && newIndex >= 0 && newIndex < objList.length) {
-                var obj = objList[startIndex];
-                objList.splice(startIndex, 1);
-                objList.splice(newIndex, 0, obj);
-                for (var i = 0; i < objList.length; i++) {
-                  var thisObj = objList[i];
-                  thisObj._order = i;
-                }
-              }
-            };
           });
         ]
       };

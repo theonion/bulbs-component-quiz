@@ -16,7 +16,7 @@ angular.module('bulbs.quiz.edit.outcomes.outcome', [
       templateUrl: 'bulbs/quiz-edit/quiz-edit-outcomes/quiz-edit-outcomes-outcome/quiz-edit-outcomes-outcome.html',
       scope: {
         outcome: '=',
-        quizStyle: '='
+        quizStyle: '@'
       }
     };
   });

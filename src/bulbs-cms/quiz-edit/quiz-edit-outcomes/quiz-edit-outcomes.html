@@ -1,7 +1,7 @@
 <div class="quiz-edit-outcomes-header">Possible Results</div>
 
 <ul>
-  <li ng-repeat="outcome in article.outcome_set">
+  <li ng-repeat="outcome in outcomes">
     <span class="quiz-edit-outcomes-outcome-title">
       <span>Result {{ $index + 1 }}</span>
       <span ng-if="outcome.title">:</span>
@@ -11,12 +11,12 @@
     <div class="quiz-edit-outcomes-outcome-toolbar">
       <div>
         <button
-            ng-click="outcomeMove(outcome, $index, $index - 1)"
+            ng-click="outcomeMove($index, $index - 1)"
             ng-disabled="$first">
           <span class="fa fa-chevron-up"></span>
         </button>
         <button
-            ng-click="outcomeMove(outcome, $index, $index + 1)"
+            ng-click="outcomeMove($index, $index + 1)"
             ng-disabled="$last">
           <span class="fa fa-chevron-down"></span>
         </button>
@@ -32,7 +32,7 @@
 
     <quiz-edit-outcomes-outcome
         outcome="outcome"
-        quiz-style="article.quiz_style">
+        quiz-style="quizStyle">
     </quiz-edit-outcomes-outcome>
   </li>
 </ul>

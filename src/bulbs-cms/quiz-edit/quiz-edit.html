@@ -1,5 +1,5 @@
 <div class="quiz">
-  <section class="row well">
+  <section>
     <div
         class="form-group"
         ng-show="article.quiz_style == 'test'">
@@ -19,10 +19,19 @@
     </div>
   </section>
 
-  <quiz-edit-outcomes article="article"></quiz-edit-outcomes>
+  <section>
+    <quiz-edit-outcomes
+        article-id="article.id"
+        outcomes="article.outcome_set"
+        quiz-style="article.quiz_style">
+    </quiz-edit-outcomes>
+  </section>
 
-  <section class="row well">
-    <h1 class="h4">Questions</h1>
-    <quiz-questions article="article"></quiz-questions>
+  <section>
+    <quiz-questions
+        article-id="article.id"
+        questions="article.question_set"
+        quiz-style="article.quiz_style">
+    </quiz-questions>
   </section>
 </div>
