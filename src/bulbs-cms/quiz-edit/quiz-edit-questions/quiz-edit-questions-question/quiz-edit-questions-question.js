@@ -15,33 +15,15 @@ angular.module('bulbs.quiz.edit.questions.question', [
           function ($scope, Utils) {
 
             $scope.answerMove = function (index, indexTo) {
-              Utils.moveTo($scope.question.answer_set, index, indexTo);
+              Utils.moveTo($scope.question.answers, index, indexTo);
             };
 
             $scope.answerDelete = function (answer, index) {
-              QuizApi
-                .restangularizeElement(null, answer, 'answer');
-                .remove().then(function () {
-                  Utils.removeFrom($scope.question.answer_set, index);
-                });
+              answer.$destroy();
             };
 
             $scope.answerAdd = function (answer) {
-              var answerData = {
-                question: question.id,
-                body: '',
-                outcome: null,
-                is_correct: false,
-                explanation: '',
-                points: 1
-              };
-
-              QuizApi
-                .restangularizeElement(null, answerData, 'answer')
-                .post()
-                .then(function (answer) {
-                  $scope.question.answer_set.push(answer);
-                });
+              $scope.answers.$create({question: question.id});
             };
           }
         ],
