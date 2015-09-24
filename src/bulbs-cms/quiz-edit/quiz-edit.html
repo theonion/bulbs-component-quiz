@@ -2,7 +2,7 @@
   <section>
     <div
         class="form-group"
-        ng-show="article.quiz_style == 'test'">
+        ng-show="article.quizStyle === 'test'">
       <label>
         <input
             type="checkbox"
@@ -22,8 +22,8 @@
   <section>
     <quiz-edit-outcomes
         article-id="article.id"
-        outcomes="article.outcome_set"
-        quiz-style="article.quiz_style">
+        outcomes="article.outcomes"
+        quiz-style="article.quizStyle">
     </quiz-edit-outcomes>
   </section>
 
@@ -31,7 +31,8 @@
     <quiz-questions
         article-id="article.id"
         questions="article.question_set"
-        quiz-style="article.quiz_style">
+        outcomes="article.outcomes"
+        quiz-style="article.quizStyle">
     </quiz-questions>
   </section>
 </div>

@@ -17,6 +17,18 @@ angular.module('bulbs.quiz.api.question', [
         answers: {
           belongsToMany: 'QuizAnswer',
           keys: 'answer_set'
+        },
+        body: {
+          init: ''
+        },
+        postAnswerBody: {
+          init: ''
+        },
+        outcome: {
+          init: null
+        }
+        quiz: {
+          init: null
         }
       });
     }]

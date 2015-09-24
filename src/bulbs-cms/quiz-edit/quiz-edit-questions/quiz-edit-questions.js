@@ -8,37 +8,19 @@ angular.module('bulbs.quiz.edit.questions', [
     .directive('quizEditQuestions', function () {
       return {
         controller: [
-          '$scope', 'Utils'
-          function ($scope) {
+          '$scope', 'Utils',
+          function ($scope, Utils) {
 
             $scope.questionMove = function (index, indexTo) {
-              Utils.moveTo(questions, index, indexTo);
+              Utils.moveTo($scope.questions, index, indexTo);
             };
 
             $scope.questionDelete = function (question, index) {
-              QuizApi
-                .restangularizeElement(null, question, 'question')
-                .remove()
-                .then(function () {
-                  Utils.removeFrom(questions, index);
-                });
+              question.$destroy();
             };
 
             $scope.questionAdd = function () {
-              var questionData = {
-                quiz: articleId,
-                body: '',
-                post_answer_body: '',
-                answer_set: [],
-                outcome: null
-              };
-
-              QuizApi
-                .restangularizeElement(null, questionData, 'question');
-                .post()
-                .then(function (question) {
-                  questions.push(question);
-                });
+              $scope.questions.$create({quiz: articleId});
             };
           }
         ],
@@ -47,6 +29,7 @@ angular.module('bulbs.quiz.edit.questions', [
         scope: {
           articleId: '=',
           questions: '=',
+          outcomes: '=',
           quizStyle: '@'
         }
       };
