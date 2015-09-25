@@ -30,6 +30,7 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
+# TODO
 INSTALLED_APPS = (
     'src.django-bulbs',
     'django.contrib.admin',
@@ -51,7 +52,8 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.security.SecurityMiddleware',
 )
 
-ROOT_URLCONF = 'example.urls'
+# TODO
+ROOT_URLCONF = 'src.example.urls'
 
 TEMPLATES = [
     {

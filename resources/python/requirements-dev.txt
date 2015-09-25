@@ -1,2 +1,3 @@
 -e .[dev]
 djangorestframework-jwt==1.7.2
+drf-nested-serializers==1.0.1
