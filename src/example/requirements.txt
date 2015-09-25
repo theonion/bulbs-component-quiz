@@ -1,0 +1,1 @@
+git+git://github.com/theonion/bulbs-component-quiz.git@backend#egg=bulbs-component-quiz

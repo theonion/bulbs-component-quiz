@@ -32,7 +32,7 @@ ALLOWED_HOSTS = []
 
 # TODO
 INSTALLED_APPS = (
-    'src.django-bulbs',
+    'bulbs_component_quiz',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

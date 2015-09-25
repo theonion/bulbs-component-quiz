@@ -117,7 +117,7 @@ class QuizTests(TestCase):
         quiz_data["outcome_set"] = outcome_data
         quiz_data["question_set"] = question_data
 
-        # Compontents shouldn't have awareness of Sections
+        # Components shouldn't have awareness of Sections
         # # sections required on put
         # section = Section.objects.create(name="Quiz")
         # quiz_data["section"] = {"id": section.id}
