@@ -117,11 +117,6 @@ class QuizTests(TestCase):
         quiz_data["outcome_set"] = outcome_data
         quiz_data["question_set"] = question_data
 
-        # Components shouldn't have awareness of Sections
-        # # sections required on put
-        # section = Section.objects.create(name="Quiz")
-        # quiz_data["section"] = {"id": section.id}
-
         response = self.client.put(
             reverse("api:quiz-detail", kwargs={"pk": quiz_id}),
             json.dumps(quiz_data),
