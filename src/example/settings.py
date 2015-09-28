@@ -30,7 +30,6 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-# TODO
 INSTALLED_APPS = (
     'bulbs_component_quiz',
     'django.contrib.admin',
@@ -53,7 +52,7 @@ MIDDLEWARE_CLASSES = (
 )
 
 # TODO
-ROOT_URLCONF = 'src.example.urls'
+ROOT_URLCONF = 'example.urls'
 
 TEMPLATES = [
     {

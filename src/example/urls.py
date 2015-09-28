@@ -1,10 +1,8 @@
 from django.conf.urls import patterns, include, url
 
-# TODO
-import importlib
-mod = importlib.import_module('src.django-bulbs.routers')
+from bulbs_component_quiz.routers import router
 
 urlpatterns = patterns(
     '',
-    url(r"api/", include(mod.router.urls, namespace="api")),
+    url(r"api/", include(router.urls, namespace="api")),
 )
