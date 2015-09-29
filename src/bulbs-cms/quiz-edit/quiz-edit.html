@@ -1,4 +1,8 @@
 <div class="quiz">
+
+  <h1>{{ quiz.$dirty() }}</h1>
+
+
   <section>
     <div
         class="form-group"
@@ -30,9 +34,9 @@
   <section>
     <quiz-edit-questions
         article-id="quiz.id"
-        questions="quiz.question_set"
+        questions="quiz.questions"
         outcomes="quiz.outcomes"
-        quiz-style="quiz.quizStyle">
+        quiz-style="{{ quiz.quizStyle }}">
     </quiz-edit-questions>
   </section>
 </div>

@@ -25,7 +25,7 @@ angular.module('bulbs.quiz.edit.questions.question', [
 
             $scope.answerAdd = function (answer) {
               var newAnswer = QuizAnswer.$create({question: $scope.question.id});
-              $scope.answers.push(newAnswer);
+              $scope.question.answers.push(newAnswer);
             };
           }
         ],
