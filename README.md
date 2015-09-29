@@ -29,8 +29,9 @@ install which should match the ```<version>``` used in ```requirements.txt```:
 ### Implementation
 1. Create a quiz package in the site's app directory.
 1. Add ```"bulbs_component_quiz"``` to ```INSTALLED_APPS``` in Django's settings file.
-1. Add a ```models.py``` that implements ```bulbs_component_quiz.models.QuizMixin```.
+1. Add a ```models.py``` that implements ```bulbs_component_quiz.models.Quiz```.
 1. Create a migration for your app with Django migrations as you would any other app.
+1. Import the router from `bulbs_component_quiz.routers` and concatenate it onto an existing router, or add it to your `urls.py` file.
 
 #### Implementing Public Resources
 To use the public templates, scripts, and styles:
@@ -40,7 +41,7 @@ Django's settings file.
 
 1. Create a detail page with the following template logic included:
   ```html
-  {% include "quzi/partials/quiz.html" with content=<content-variable> share_partial_template="<share-template-path>" %}
+  {% include "quiz/partials/quiz.html" with content=<content-variable> share_partial_template="<share-template-path>" %}
   ```
   Where ```<share-template-path>``` is the path to a share template, and
   ```<content-variable>``` is the name of the variable containing the content's data.
@@ -65,6 +66,10 @@ Django's settings file.
 To work on this project, install all requirements:
 ```bash
 $ npm install && bower install
+```
+
+```bash
+$ pip install -e .
 ```
 
 ### django-bulbs-cms Package
