@@ -32,39 +32,33 @@ class Quiz(models.Model):
     def get_template(self):
         return "quiz/partials/quiz_{}_detail.html".format(self.quiz_style)
 
+    class Meta:
+        abstract = True
+
 
 class QuizQuestion(models.Model):
     """Represents one quiz question with many answers."""
-    quiz = models.ForeignKey("Quiz", related_name="question_set")
 
     # post_answer_body gets displayed immediately after the question is answered
     post_answer_body = models.TextField(blank=True, default="")
 
     class Meta:
+        abstract = True
         order_with_respect_to = "quiz"
 
 
 class QuizAnswer(models.Model):
     """An answer to a particular quiz question."""
-    question = models.ForeignKey("QuizQuestion", related_name="answer_set")
 
     # for "test" type
     is_correct = models.BooleanField(default=False)
     explanation = models.TextField(blank=True, default="")
 
-    # for "multiple" type
-    outcome = models.ForeignKey(
-        "QuizOutcome",
-        related_name="answer_set",
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL
-    )
-
     # for "tally" type
     points = models.IntegerField(blank=True, default=1)
 
     class Meta:
+        abstract = True
         order_with_respect_to = "question"
 
     class Mapping:
@@ -73,7 +67,6 @@ class QuizAnswer(models.Model):
 
 class QuizOutcome(models.Model):
     """A potential result for a quiz."""
-    quiz = models.ForeignKey("Quiz", related_name="outcome_set")
 
     title = models.TextField(blank=True, default="")
     shareable = models.BooleanField(default=False)
@@ -86,6 +79,7 @@ class QuizOutcome(models.Model):
     require_perfect = models.BooleanField(default=False)
 
     class Meta:
+        abstract = True
         order_with_respect_to = "quiz"
 
     class Mapping:
