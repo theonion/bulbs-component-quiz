@@ -1,6 +1,7 @@
 'use strict';
 
 angular.module('bulbs.quiz.edit.outcomes', [
+  'bulbs.quiz.api.outcome',
   'bulbs.quiz.edit.outcomes.outcome',
   // HACK : import utils from another 3rd party package, not bulbs-cms
   'utils'
@@ -8,8 +9,8 @@ angular.module('bulbs.quiz.edit.outcomes', [
     .directive('quizEditOutcomes', function () {
       return {
         controller: [
-          '$scope', 'Utils',
-          function ($scope, Utils) {
+          '$scope', 'QuizOutcome', 'Utils',
+          function ($scope, QuizOutcome, Utils) {
 
             $scope.outcomeMove = function (index, indexTo) {
               Utils.moveTo($scope.outcomes, index, indexTo);
@@ -20,7 +21,8 @@ angular.module('bulbs.quiz.edit.outcomes', [
             };
 
             $scope.outcomeAdd = function () {
-              $scope.outcomes.$create({quiz: $scope.articleId});
+              var newOutcome = QuizOutcome.$create({quiz: $scope.articleId});
+              $scope.outcomes.push(newOutcome);
             };
           }
         ],
