@@ -3,7 +3,6 @@
 angular.module('bulbs.quiz.edit.questions.question', [
   'bulbs.quiz.api.answer',
   'bulbs.quiz.questions.question.answer',
-  'bulbs.quiz.questions.question.answer.filters.title',
   // HACK : import utils from another 3rd party package, not bulbs-cms
   'utils'
   // HACK : this is using onion-editor without having a dependency on it, onionEditor directive

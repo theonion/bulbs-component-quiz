@@ -1,6 +1,7 @@
 <div class="quiz">
 
-  <h1>{{ quiz.$dirty() }}</h1>
+  <h1 ng-if="quiz.$dirty().length > 0">QUIZ DIRTY</h1>
+  <h1 ng-if="!quiz.$dirty || !quiz.$dirty().length === 0">QUIZ CLEAN</h1>
 
 
   <section>
@@ -10,7 +11,7 @@
       <label>
         <input
             type="checkbox"
-            ng-model="quiz.show_all_answers">
+            ng-model="quiz.showAllAnswers">
         <span>Reveal Other Answers After Answering</span>
       </label>
     </div>
@@ -18,7 +19,7 @@
       <label>Customize Result Button Text:</label>
       <input
           type="text"
-          ng-model="quiz.result_button_text">
+          ng-model="quiz.resultButtonText">
       <span class="text-muted">(Optional: Defaults to "Get Results")</span>
     </div>
   </section>
