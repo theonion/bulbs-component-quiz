@@ -23,6 +23,9 @@ QUIZ_STYLE = (
 
 
 class Quiz(models.Model):
+    # temporary, until we migrate from current base content structure
+    _quiz_id = models.AutoField(primary_key=True)
+
     quiz_style = models.CharField(max_length=20, choices=QUIZ_STYLE, default=QUIZ_STYLE[0][0])
     show_all_answers = models.BooleanField(
         default=True,
@@ -35,6 +38,9 @@ class Quiz(models.Model):
 
 class QuizQuestion(models.Model):
     """Represents one quiz question with many answers."""
+
+    _quiz_question_id = models.AutoField(primary_key=True)
+
     quiz = models.ForeignKey("Quiz", related_name="question_set")
 
     # post_answer_body gets displayed immediately after the question is answered
@@ -46,6 +52,9 @@ class QuizQuestion(models.Model):
 
 class QuizAnswer(models.Model):
     """An answer to a particular quiz question."""
+
+    _quiz_answer_id = models.AutoField(primary_key=True)
+
     question = models.ForeignKey("QuizQuestion", related_name="answer_set")
 
     # for "test" type
@@ -73,6 +82,9 @@ class QuizAnswer(models.Model):
 
 class QuizOutcome(models.Model):
     """A potential result for a quiz."""
+
+    _quiz_outcome_id = models.AutoField(primary_key=True)
+
     quiz = models.ForeignKey("Quiz", related_name="outcome_set")
 
     title = models.TextField(blank=True, default="")
