@@ -34,7 +34,7 @@ public_css = PipelineWrapper()
 public_css \
     .set_name("quiz") \
     .set_output_filename("css/quiz.css") \
-    .add_source_filename("clickventure/styles/quiz.less")
+    .add_source_filename("quiz/styles/quiz.less")
 
 cms_js = PipelineWrapper()
 cms_js \
