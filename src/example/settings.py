@@ -31,6 +31,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = (
+    ## TODO: Fix structure so you don't need to add this to run migrations
+    'django-bulbs',
     'bulbs_component_quiz',
     'django.contrib.admin',
     'django.contrib.auth',
