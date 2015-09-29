@@ -2,7 +2,7 @@
 from setuptools import setup
 
 name = "bulbs-component-quiz"
-version = "0.0.14"
+version = "0.0.1"
 
 requires = [
     "django-bulbs==0.6.22",
