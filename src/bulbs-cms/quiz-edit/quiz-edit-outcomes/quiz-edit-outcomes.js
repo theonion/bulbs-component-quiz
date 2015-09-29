@@ -25,7 +25,7 @@ angular.module('bulbs.quiz.edit.outcomes', [
           }
         ],
         restrict: 'E',
-        templateUrl: 'bulbs/quiz-edit/quiz-edit-outcomes/quiz-edit-outcomes-outcome.html',
+        templateUrl: 'bulbs/quiz-edit/quiz-edit-outcomes/quiz-edit-outcomes.html',
         scope: {
           articleId: '=',
           outcomes: '=',
