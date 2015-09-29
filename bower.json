@@ -7,7 +7,7 @@
     "compat-builds/bulbs-cms-dist/quiz.js"
   ],
   "ignore": [
-    "compat-builds",
+    "compat-builds/django-bulbs-cms",
     "resources",
     "src",
     ".*",
