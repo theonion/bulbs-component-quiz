@@ -36,7 +36,9 @@
       'copy:bulbs_cms_dist_scripts_to_pre_1',
       // minify scripts
       'uglify:bulbs_cms_dist_scripts_pre_1_to_tmp_dist',
-      // put scripts in compat-builds
+      // compile styles
+      'sass:bulbs_cms_dist_styles_to_tmp_dist',
+      // put files into compat-builds
       'copy:bulbs_cms_dist_tmp_to_dist',
       // cleanup
       'clean:tmp',

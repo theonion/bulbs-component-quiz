@@ -4,7 +4,8 @@
   "version": "0.0.1",
   "private": true,
   "main": [
-    "compat-builds/bulbs-cms-dist/quiz.js"
+    "compat-builds/bulbs-cms-dist/quiz.js",
+    "compat-builds/bulbs-cms-dist/quiz.css"
   ],
   "ignore": [
     "compat-builds/django-bulbs-cms",

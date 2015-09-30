@@ -1,6 +1,8 @@
 <section class="well row">
+  <h4>Quiz Options</h4>
+
   <div
-      class="form-group"
+      class="form-group col-sm-12"
       ng-show="quiz.quizStyle === 'test'">
     <label for="revealAnswers">Reveal other answers after answering</label>
     <input
@@ -8,7 +10,7 @@
         type="checkbox"
         ng-model="quiz.showAllAnswers">
   </div>
-  <div class="form-control form-inline">
+  <div class="form-group col-sm-3">
     <label for="resultButtonText">Result Button Text</label>
     <input
         id="resultButtonText"

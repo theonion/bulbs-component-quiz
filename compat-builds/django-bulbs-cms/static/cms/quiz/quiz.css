@@ -1,0 +1,10 @@
+quiz-edit h4 {
+  margin: 0 0 15px; }
+quiz-edit label + input[type="checkbox"] {
+  margin-left: 10px; }
+
+quiz-edit-outcomes {
+  display: block; }
+
+quiz-edit-questions {
+  display: block; }
