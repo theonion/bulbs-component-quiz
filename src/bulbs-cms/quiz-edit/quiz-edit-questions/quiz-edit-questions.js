@@ -18,6 +18,7 @@ angular.module('bulbs.quiz.edit.questions', [
 
             $scope.questionDelete = function (question, index) {
               question.$destroy();
+              Utils.removeFrom($scope.questions, index);
             };
 
             $scope.questionAdd = function () {

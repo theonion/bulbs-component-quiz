@@ -18,6 +18,7 @@ angular.module('bulbs.quiz.edit.outcomes', [
 
             $scope.outcomeDelete = function (outcome, index) {
               outcome.$destroy();
+              Utils.removeFrom($scope.outcomes, index);
             };
 
             $scope.outcomeAdd = function () {
