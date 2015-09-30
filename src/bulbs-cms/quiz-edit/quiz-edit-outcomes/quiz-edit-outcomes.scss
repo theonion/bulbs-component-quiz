@@ -1,3 +1,11 @@
 quiz-edit-outcomes {
   display: block;
+
+  ul {
+    list-style: none;
+
+    li.quiz-edit-outcome-panel {
+      margin-bottom: 5px;
+    }
+  }
 }

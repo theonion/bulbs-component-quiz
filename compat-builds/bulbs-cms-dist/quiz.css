@@ -1,10 +1,30 @@
 quiz-edit h4 {
+  font-weight: bold;
   margin: 0 0 15px; }
 quiz-edit label + input[type="checkbox"] {
   margin-left: 10px; }
+quiz-edit .quiz-panel-heading {
+  float: left; }
+quiz-edit .quiz-panel-toolbar {
+  float: right; }
+  quiz-edit .quiz-panel-toolbar .btn-group {
+    margin-left: 5px; }
 
 quiz-edit-outcomes {
   display: block; }
+  quiz-edit-outcomes ul {
+    list-style: none; }
+    quiz-edit-outcomes ul li.quiz-edit-outcome-panel {
+      margin-bottom: 5px; }
+
+quiz-edit-outcomes-outcome {
+  display: block; }
+  quiz-edit-outcomes-outcome textarea {
+    resize: vertical; }
+  quiz-edit-outcomes-outcome .form-inline label {
+    margin-right: 10px; }
+  quiz-edit-outcomes-outcome .quiz-image-box {
+    height: 315px; }
 
 quiz-edit-questions {
   display: block; }

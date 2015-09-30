@@ -1,10 +1,23 @@
 quiz-edit {
 
   h4 {
+    font-weight: bold;
     margin: 0 0 15px;
   }
 
   label + input[type="checkbox"] {
     margin-left: 10px;
+  }
+
+  .quiz-panel-heading {
+    float: left;
+  }
+
+  .quiz-panel-toolbar {
+    float: right;
+
+    .btn-group {
+      margin-left: 5px;
+    }
   }
 }
