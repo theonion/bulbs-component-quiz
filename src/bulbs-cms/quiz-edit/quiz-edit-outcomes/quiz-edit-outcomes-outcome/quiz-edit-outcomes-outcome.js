@@ -5,19 +5,19 @@ angular.module('bulbs.quiz.edit.outcomes.outcome', [
   'bettyEditable',
   'uuid4'
 ])
-  .directive('quizEditOutcomesOutcome', function () {
-    return {
-      controller: [
-        '$scope', 'uuid4',
-        function ($scope, uuid4) {
-          $scope.uuid = uuid4.generate();
+  .directive('quizEditOutcomesOutcome', [
+    'uuid4',
+    function (uuid4) {
+      return {
+        link: function (scope) {
+          scope.uuid = uuid4.generate();
+        },
+        restrict: 'E',
+        templateUrl: 'bulbs/quiz-edit/quiz-edit-outcomes/quiz-edit-outcomes-outcome/quiz-edit-outcomes-outcome.html',
+        scope: {
+          outcome: '=',
+          quizStyle: '@'
         }
-      ],
-      restrict: 'E',
-      templateUrl: 'bulbs/quiz-edit/quiz-edit-outcomes/quiz-edit-outcomes-outcome/quiz-edit-outcomes-outcome.html',
-      scope: {
-        outcome: '=',
-        quizStyle: '@'
-      }
-    };
-  });
+      };
+    }]
+  );
