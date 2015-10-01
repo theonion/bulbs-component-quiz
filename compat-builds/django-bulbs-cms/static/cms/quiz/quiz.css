@@ -3,6 +3,10 @@ quiz-edit h4 {
   margin: 0 0 15px; }
 quiz-edit label + input[type="checkbox"] {
   margin-left: 10px; }
+quiz-edit .quiz-panel-list {
+  list-style: none; }
+quiz-edit .quiz-panel {
+  margin-bottom: 5px; }
 quiz-edit .quiz-panel-heading {
   float: left; }
 quiz-edit .quiz-panel-toolbar {
@@ -12,10 +16,6 @@ quiz-edit .quiz-panel-toolbar {
 
 quiz-edit-outcomes {
   display: block; }
-  quiz-edit-outcomes ul {
-    list-style: none; }
-    quiz-edit-outcomes ul li.quiz-edit-outcome-panel {
-      margin-bottom: 5px; }
 
 quiz-edit-outcomes-outcome {
   display: block; }

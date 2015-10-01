@@ -1,14 +1,15 @@
 <h4>Possible Results</h4>
 
-<ul>
+<ul class="quiz-panel-list">
   <li
-      class="panel panel-default quiz-edit-outcome-panel"
+      class="panel panel-default quiz-panel"
       ng-repeat="outcome in outcomes">
 
     <div
         class="panel-heading"
         data-toggle="collapse"
         data-target="#outcome{{ $index }}">
+
       <div class="quiz-panel-heading">
         <span>Result {{ $index + 1 }}</span>
         <span ng-if="outcome.title">:</span>
