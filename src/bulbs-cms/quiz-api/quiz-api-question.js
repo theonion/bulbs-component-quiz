@@ -8,15 +8,16 @@ angular.module('bulbs.quiz.api.question', [
     'restmod',
     function (restmod) {
 
-      return restmod.model('question').mix('NestedDirtyModel', {
+      return restmod.model().mix('NestedDirtyModel', {
         $config: {
-          name: 'QuizQuestion',
-          plural: 'QuizQuestions',
+          name: 'Question',
+          plural: 'Questions',
           primaryKey: 'id'
         },
         answers: {
-          belongsToMany: 'QuizAnswer',
-          keys: 'answer_set'
+          hasMany: 'QuizAnswer',
+          map: 'answer_set',
+          path: 'answer'
         },
         body: {
           init: ''

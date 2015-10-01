@@ -7,10 +7,10 @@ angular.module('bulbs.quiz.api.answer', [
     'restmod',
     function (restmod) {
 
-      return restmod.model('answer').mix('NestedDirtyModel', {
+      return restmod.model().mix('NestedDirtyModel', {
         $config: {
-          name: 'QuizAnswer',
-          plural: 'QuizAnswers',
+          name: 'Answer',
+          plural: 'Answers',
           primaryKey: 'id'
         },
         question: {
