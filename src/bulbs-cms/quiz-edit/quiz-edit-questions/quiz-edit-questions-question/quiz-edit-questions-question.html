@@ -1,14 +1,16 @@
 <div>
-  <label>Question:</label>
 
-  <onion-editor
-      ng-model="question.body"
-      role="multiline"
-      placeholder="Question Body">
-  </onion-editor>
+  <div>
+    <label>Question</label>
+    <onion-editor
+        ng-model="question.body"
+        role="multiline"
+        placeholder="Question Body">
+    </onion-editor>
+  </div>
 
   <div ng-show="['multiple', 'cosmo', 'test'].indexOf(quizStyle) > -1">
-    <label>Optional post-answer content:</label>
+    <label>Optional post-answer content</label>
     <onion-editor
         ng-model="question.postAnswerBody"
         role="multiline"
@@ -55,8 +57,10 @@
   </li>
 </ul>
 
-<div class="quiz-edit-questions-question-answer-add">
-  <button ng-click="answerAdd()">
+<div>
+  <button
+      class="btn btn-primary"
+      ng-click="answerAdd()">
     <span class="fa fa-plus"></span>
     <span>Add An Answer</span>
   </button>

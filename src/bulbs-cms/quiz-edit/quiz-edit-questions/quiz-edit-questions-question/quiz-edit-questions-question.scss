@@ -1,0 +1,22 @@
+quiz-edit-questions-question {
+
+  $editorSpacing: 10px;
+
+  .editor-wrapper {
+    margin-bottom: 15px;
+
+    .editorPlaceholder {
+      padding: $editorSpacing * 2 $editorSpacing;
+    }
+
+    .editor {
+      border: 1px solid #cccccc;
+      border-radius: 3px;
+      padding: $editorSpacing;
+
+      p {
+        margin: $editorSpacing 0;
+      }
+    }
+  }
+}

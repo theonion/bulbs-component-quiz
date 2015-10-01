@@ -28,3 +28,14 @@ quiz-edit-outcomes-outcome {
 
 quiz-edit-questions {
   display: block; }
+
+quiz-edit-questions-question .editor-wrapper {
+  margin-bottom: 15px; }
+  quiz-edit-questions-question .editor-wrapper .editorPlaceholder {
+    padding: 20px 10px; }
+  quiz-edit-questions-question .editor-wrapper .editor {
+    border: 1px solid #cccccc;
+    border-radius: 3px;
+    padding: 10px; }
+    quiz-edit-questions-question .editor-wrapper .editor p {
+      margin: 10px 0; }

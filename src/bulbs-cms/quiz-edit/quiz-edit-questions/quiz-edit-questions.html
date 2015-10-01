@@ -12,8 +12,6 @@
 
       <div class="quiz-panel-heading">
         <span>Question {{ $index + 1 }}</span>
-        <span ng-if="outcome.title">:</span>
-        <span ng-bind-html="question.body | truncateByWords:7"></span>
       </div>
 
       <div class="quiz-panel-toolbar">
