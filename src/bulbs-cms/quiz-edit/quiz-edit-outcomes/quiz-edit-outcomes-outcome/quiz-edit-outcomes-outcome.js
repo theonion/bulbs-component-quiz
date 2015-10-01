@@ -2,7 +2,8 @@
 
 angular.module('bulbs.quiz.edit.outcomes.outcome', [
   // HACK : import editable from another 3rd party package, not bulbs-cms
-  'bettyEditable'
+  'bettyEditable',
+  'uuid4'
 ])
   .directive('quizEditOutcomesOutcome', function () {
     return {

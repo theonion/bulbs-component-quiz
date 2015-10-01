@@ -1,6 +1,6 @@
 
-<div class="quiz-edit-questions-question-answer-text">
-  <label>Answer:</label>
+<div class="form-group">
+  <label>Text</label>
   <onion-editor
       ng-model="answer.body"
       role="singleline"
@@ -10,40 +10,41 @@
 </div>
 
 <div
-    class="quiz-edit-questions-question-answer-points"
+    class="form-group form-inline"
     ng-show="quizStyle === 'tally' || quizStyle === 'cosmo'">
-  <label>Points:</label>
+  <label>Points</label>
   <input
+      class="form-control"
+      type="number"
       ng-model="answer.points"
-      type="text"
+      placeholder="1"
       size="3">
 </div>
 
 <div
-    class="quiz-edit-questions-question-answer-result"
+    class="form-group form-inline"
     ng-show="quizStyle === 'multiple'">
   <label>Connect the answer with this result:</label>
   <select
+      class="form-control"
       ng-model="answer.outcome"
       ng-options="outcome.id as outcome.title for outcome in outcomes">
   </select>
 </div>
 
 <div
-    class="quiz-edit-questions-question-answer-correct"
+    class="form-control"
     ng-show="quizStyle === 'test'">
-  <label>
-      <input
-          type="checkbox"
-          ng-model="answer.isCorrect">
-      <span>Correct?</span>
-  </label>
+  <label>Correct?</label>
+  <input
+      type="checkbox"
+      ng-model="answer.isCorrect">
 </div>
 
 <div
-    class="quiz-edit-questions-question-answer-explain"
+    class="form-control"
     ng-show="quizStyle === 'test'">
-  <label>Answer Explanation:</label>
+  <label>Answer Explanation</label>
   <onion-editor
       ng-model="answer.explanation"
       role="multiline"
@@ -51,11 +52,11 @@
   </onion-editor>
 </div>
 
-<div class="quiz-edit-questions-question-answer-image">
+<div class="form-control">
   <label>Add Image</label>
   <betty-editable
       image="answer.image"
       ratio="1x1"
-      add-styles="fa fa-camera-retro">
+      add-styles="fa fa-camera-retro add-image-box quiz-image-box">
   </betty-editable>
 </div>
