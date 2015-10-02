@@ -3,12 +3,12 @@
 
   <div
       class="form-group col-sm-12"
-      ng-show="quiz.quizStyle === 'test'">
+      ng-show="article.quiz_style === 'test'">
     <label for="revealAnswers">Reveal other answers after answering</label>
     <input
         id="revealAnswers"
         type="checkbox"
-        ng-model="quiz.showAllAnswers">
+        ng-model="article.show_all_answers">
   </div>
   <div class="form-group col-sm-3">
     <label for="resultButtonText">Result Button Text</label>
@@ -16,22 +16,22 @@
         id="resultButtonText"
         class="form-control"
         type="text"
-        ng-model="quiz.resultButtonText"
+        ng-model="article.result_button_text"
         placeholder="Get Results">
   </div>
 </section>
 
 <quiz-edit-outcomes
     class="well row"
-    article-id="quiz.id"
-    outcomes="quiz.outcomes"
-    quiz-style="quiz.quizStyle">
+    outcomes="article.outcome_set"
+    quiz-id="article.id"
+    quiz-style="{{ article.quiz_style }}">
 </quiz-edit-outcomes>
 
 <quiz-edit-questions
     class="well row"
-    article-id="quiz.id"
-    questions="quiz.questions"
-    outcomes="quiz.outcomes"
-    quiz-style="{{ quiz.quizStyle }}">
+    questions="article.question_set"
+    outcomes="article.outcome_set"
+    quiz-id="article.id"
+    quiz-style="{{ article.quiz_style }}">
 </quiz-edit-questions>

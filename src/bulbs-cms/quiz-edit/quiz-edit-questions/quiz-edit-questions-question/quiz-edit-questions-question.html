@@ -12,7 +12,7 @@
   <div ng-show="['multiple', 'cosmo', 'test'].indexOf(quizStyle) > -1">
     <label>Optional post-answer content</label>
     <onion-editor
-        ng-model="question.postAnswerBody"
+        ng-model="question.post_answer_body"
         role="multiline"
         placeholder="Post Answer Body">
     </onion-editor>
@@ -22,7 +22,7 @@
 <ul class="quiz-panel-list">
   <li
       class="panel panel-default quiz-panel"
-      ng-repeat="answer in question.answers">
+      ng-repeat="answer in question.answer_set">
 
     <div
         class="panel-heading"
@@ -63,7 +63,7 @@
 
     <quiz-edit-questions-question-answer
         id="answer{{ $index }}"
-        class="panel-body collapse"
+        class="panel-body collapse in"
         answer="answer"
         outcomes="outcomes"
         quiz-style="quizStyle">

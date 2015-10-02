@@ -9,9 +9,12 @@ angular.module('bulbs.quiz.edit.outcomes.outcome', [
     'uuid4',
     function (uuid4) {
       return {
-        link: function (scope) {
-          scope.uuid = uuid4.generate();
-        },
+        controller: [
+          '$scope',
+          function ($scope) {
+            $scope.uuid = uuid4.generate();
+          }
+        ],
         restrict: 'E',
         templateUrl: 'bulbs/quiz-edit/quiz-edit-outcomes/quiz-edit-outcomes-outcome/quiz-edit-outcomes-outcome.html',
         scope: {
