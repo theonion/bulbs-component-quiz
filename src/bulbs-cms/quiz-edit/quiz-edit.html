@@ -1,55 +1,37 @@
-<edit-metadata article="article"></edit-metadata>
+<section class="well row">
+  <h4>Quiz Options</h4>
 
-<content-edit-main-image article="article"></content-edit-main-image>
-
-<content-edit-title article="article" class="article-header"></content-edit-title>
-
-<onion-editor id="content-description"
-              ng-model="article.description"
-              role="singleline"
-              placeholder="Description goes here"
-              formatting=""></onion-editor>
-
-<div>
-
-  <content-edit-authors class="clearfix well" article="article"></content-edit-authors>
-
-  <editor-item article="article" class="pull-right"></editor-item>
-
-  <onion-editor id="content-body"
-                ng-model="article.body"
-                role="multiline"
-                link-domain="starwipe.com"
-                link-search-handler="linkBrowser"
-                inline-objects="static/starwipe-inline-config.json"
-                placeholder="<p>Write here</p>"></onion-editor>
-</div>
-
-<section class="row well">
-    <div class="form-group" ng-show="article.quiz_style == 'test'">
-        <input type="checkbox" ng-model="article.show_all_answers">
-        <label>
-            Reveal Other Answers After Answering
-        </label>
-    </div>
-    <div class="form-group">
-        <label>
-            Customize Result Button Text:
-        </label>
-        <input type="text" ng-model="article.result_button_text">
-        <span class="text-muted">
-            <small><em>(Optional: Defaults to "Get Results")</em></small>
-        </span>
-    </div>
+  <div
+      class="form-group col-sm-12"
+      ng-show="article.quiz_style === 'test'">
+    <label for="revealAnswers">Reveal other answers after answering</label>
+    <input
+        id="revealAnswers"
+        type="checkbox"
+        ng-model="article.show_all_answers">
+  </div>
+  <div class="form-group col-sm-3">
+    <label for="resultButtonText">Result Button Text</label>
+    <input
+        id="resultButtonText"
+        class="form-control"
+        type="text"
+        ng-model="article.result_button_text"
+        placeholder="Get Results">
+  </div>
 </section>
 
-<section class="row well">
-    <h1 class="h4">Possible Results</h1>
-    <quiz-outcomes article="article"></quiz-outcomes>
-</section>
-<section class="row well">
-    <h1 class="h4">Questions</h1>
-    <quiz-questions article="article"></quiz-questions>
-</section>
+<quiz-edit-outcomes
+    class="well row"
+    outcomes="article.outcome_set"
+    quiz-id="article.id"
+    quiz-style="{{ article.quiz_style }}">
+</quiz-edit-outcomes>
 
-<encode-status></encode-status>
+<quiz-edit-questions
+    class="well row"
+    questions="article.question_set"
+    outcomes="article.outcome_set"
+    quiz-id="article.id"
+    quiz-style="{{ article.quiz_style }}">
+</quiz-edit-questions>

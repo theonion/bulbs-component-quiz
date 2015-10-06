@@ -1,0 +1,60 @@
+<h4>Questions</h4>
+
+<ul class="quiz-panel-list">
+  <li
+      class="panel panel-default quiz-panel"
+      ng-repeat="question in questions">
+
+    <div
+        class="panel-heading"
+        data-toggle="collapse"
+        data-target="#question{{ $index }}">
+
+      <div class="quiz-panel-heading">
+        <span>Question {{ $index + 1 }}</span>
+      </div>
+
+      <div class="quiz-panel-toolbar">
+        <div class="btn-group">
+          <button
+              class="btn btn-xs btn-info"
+              ng-click="questionMove($index, $index - 1); $event.stopPropagation();"
+              ng-disabled="$first">
+            <span class="fa fa-chevron-up"></span>
+          </button>
+          <button
+              class="btn btn-xs btn-info"
+              ng-click="questionMove($index, $index + 1); $event.stopPropagation();"
+              ng-disabled="$last">
+            <span class="fa fa-chevron-down"></span>
+          </button>
+        </div>
+        <div class="btn-group">
+          <button
+              class="btn btn-xs btn-danger"
+              title="Delete question"
+              ng-click="questionDelete(question, $index); $event.stopPropagation();">
+            <span class="fa fa-trash-o"></span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <quiz-edit-questions-question
+        id="question{{ $index }}"
+        class="panel-body collapse in"
+        outcomes="outcomes"
+        question="question"
+        quiz-style="quizStyle">
+    </quiz-edit-questions-question>
+  </li>
+</ul>
+
+<div>
+  <button
+      class="btn btn-primary"
+      ng-click="questionAdd()">
+    <span class="fa fa-plus"></span>
+    <span>Add A Question</span>
+  </button>
+</div>

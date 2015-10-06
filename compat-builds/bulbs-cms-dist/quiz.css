@@ -1,0 +1,46 @@
+quiz-edit h4 {
+  font-weight: bold;
+  margin: 0 0 15px; }
+quiz-edit label + input[type="checkbox"] {
+  margin-left: 10px; }
+quiz-edit .form-inline label {
+  margin-right: 10px; }
+quiz-edit .quiz-image-box {
+  height: 315px; }
+quiz-edit .quiz-panel-list {
+  list-style: none; }
+quiz-edit .quiz-panel {
+  margin-bottom: 5px; }
+quiz-edit .quiz-panel-heading {
+  float: left; }
+quiz-edit .quiz-panel-toolbar {
+  float: right; }
+  quiz-edit .quiz-panel-toolbar .btn-group {
+    margin-left: 5px; }
+
+quiz-edit-outcomes {
+  display: block; }
+
+quiz-edit-outcomes-outcome {
+  display: block; }
+  quiz-edit-outcomes-outcome textarea {
+    resize: vertical; }
+
+quiz-edit-questions {
+  display: block; }
+
+quiz-edit-questions-question .editor-wrapper {
+  margin-bottom: 15px; }
+  quiz-edit-questions-question .editor-wrapper .editor {
+    border: 1px solid #cccccc;
+    border-radius: 3px; }
+  quiz-edit-questions-question .editor-wrapper[role='singleline'] .editorPlaceholder {
+    padding: 5px; }
+  quiz-edit-questions-question .editor-wrapper[role='singleline'] .editor {
+    padding: 5px; }
+  quiz-edit-questions-question .editor-wrapper[role='multiline'] .editorPlaceholder {
+    padding: 24px 12px; }
+  quiz-edit-questions-question .editor-wrapper[role='multiline'] .editor {
+    padding: 12px; }
+    quiz-edit-questions-question .editor-wrapper[role='multiline'] .editor p {
+      margin: 12px 0; }

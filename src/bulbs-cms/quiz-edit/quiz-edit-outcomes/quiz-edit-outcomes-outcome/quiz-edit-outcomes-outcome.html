@@ -1,0 +1,61 @@
+<div class="col-sm-7">
+  <div class="form-group">
+    <label for="quizEditOutcomesOutcomeHeadline{{ uuid }}">Result Headline</label>
+    <input
+        id="quizEditOutcomesOutcomeHeadline{{ uuid }}"
+        class="form-control"
+        type="text"
+        ng-model="outcome.title"
+        placeholder="Title of result">
+  </div>
+
+  <div class="form-group">
+    <label for="quizEditOutcomesOutcomeDescription{{ uuid }}">Result Description</label>
+    <textarea
+        id="quizEditOutcomesOutcomeDescription{{ uuid }}"
+        class="form-control"
+        rows="3"
+        ng-model="outcome.body"
+        placeholder="Description of result">
+    </textarea>
+  </div>
+
+  <div
+      class="form-group form-inline"
+      ng-show="quizStyle === 'tally' || quizStyle === 'test' || quizStyle === 'cosmo'">
+    <label for="quizEditOutcomesOutcomeScore{{ uuid }}">This result requires a minimum score of</label>
+    <input
+        id="quizEditOutcomesOutcomeScore{{ uuid }}"
+        class="form-control"
+        type="number"
+        ng-model="outcome.minScore"
+        placeholder="1"
+        size="5">
+  </div>
+
+  <div class="form-group">
+    <label for="quizEditOutcomesOutcomeShareable{{ uuid }}">This result is shareable</label>
+    <input
+        id="quizEditOutcomesOutcomeShareable{{ uuid }}"
+        type="checkbox"
+        ng-model="outcome.shareable">
+  </div>
+
+  <div
+      class="quiz-edit-outcomes-outcome-perfect"
+      ng-show="quizStyle === 'multiple'">
+    <label>Perfect score required</label>
+    <input
+        type="checkbox"
+        ng-model="outcome.requirePerfect">
+  </div>
+</div>
+
+<div class="col-sm-5">
+  <label>Add Image</label>
+  <betty-editable
+      image="outcome.detail_image"
+      ratio="1x1"
+      add-styles="fa fa-camera-retro add-image-box quiz-image-box">
+  </betty-editable>
+</div>
