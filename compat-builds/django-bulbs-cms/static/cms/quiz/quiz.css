@@ -1,6 +1,8 @@
 quiz-edit .quiz-helper-text {
   color: #a8a8a8;
-  font-style: italic; }
+  font-style: italic;
+  font-weight: normal;
+  margin-left: 5px; }
 quiz-edit .quiz-options-header {
   margin: 0 0 15px; }
   quiz-edit .quiz-options-header h4 {
