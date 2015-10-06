@@ -1,13 +1,16 @@
 <section class="well row">
   <div class="quiz-options-header">
     <h4>Quiz Options</h4>
-    <span>(quiz style: {{ article.quiz_style }})</span>
+    <span class="quiz-helper-text">(quiz style: {{ article.quiz_style }})</span>
   </div>
 
   <div
       class="form-group col-sm-12"
       ng-show="article.quiz_style === 'test'">
-    <label for="revealAnswers">Reveal other answers after answering</label>
+    <label for="revealAnswers">
+      <span>Reveal other answers after answering</span>
+      <span class="quiz-helper-text">(Optional: Defaults to "Get Results")</span>
+    </label>
     <input
         id="revealAnswers"
         type="checkbox"

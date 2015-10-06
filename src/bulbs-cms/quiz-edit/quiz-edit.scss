@@ -1,5 +1,10 @@
 quiz-edit {
 
+  .quiz-helper-text {
+    color: #a8a8a8;
+    font-style: italic;
+  }
+
   .quiz-options-header {
     margin: 0 0 15px;
 
@@ -10,8 +15,6 @@ quiz-edit {
     }
 
     span {
-      color: #a8a8a8;
-      font-style: italic;
       margin-bottom: 15px;
     }
   }
