@@ -34,7 +34,11 @@ angular.module('bulbs.quiz.edit.questions.question', [
           };
 
           $scope.answerAdd = function () {
-            var newAnswer = restangularize({question: $scope.question.id});
+            var newAnswer = restangularize({
+              question: $scope.question.id,
+              is_correct: false,
+              points: 1
+            });
 
             newAnswer.post()
               .then(function (data) {

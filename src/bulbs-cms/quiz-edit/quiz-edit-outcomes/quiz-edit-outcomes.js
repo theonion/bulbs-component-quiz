@@ -32,7 +32,12 @@ angular.module('bulbs.quiz.edit.outcomes', [
             };
 
             $scope.outcomeAdd = function () {
-              var newOutcome = restangularize({quiz: $scope.quizId});
+              var newOutcome = restangularize({
+                quiz: $scope.quizId,
+                shareable: false,
+                min_score: 0,
+                require_perfect: false
+              });
 
               newOutcome.post()
                 .then(function (data) {
