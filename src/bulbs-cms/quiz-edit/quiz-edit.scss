@@ -1,8 +1,24 @@
 quiz-edit {
 
-  h4 {
-    font-weight: bold;
+  .quiz-helper-text {
+    color: #a8a8a8;
+    font-style: italic;
+    font-weight: normal;
+    margin-left: 5px;
+  }
+
+  .quiz-options-header {
     margin: 0 0 15px;
+
+    h4 {
+      display: inline-block;
+      font-weight: bold;
+      margin: 0 5px 0 0;
+    }
+
+    span {
+      margin-bottom: 15px;
+    }
   }
 
   label + input[type="checkbox"] {

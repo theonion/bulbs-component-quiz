@@ -2,8 +2,8 @@
 
 angular.module('bulbs.quiz.edit.questions.question', [
   'bulbs.quiz.questions.question.answer',
+  'confirmationModal.factory',
   'restangular',
-  // HACK : import utils from another 3rd party package, not bulbs-cms
   'utils'
   // HACK : this is using onion-editor without having a dependency on it, onionEditor directive
   //    needs to be separated from bulbs-cms then required here
@@ -11,8 +11,8 @@ angular.module('bulbs.quiz.edit.questions.question', [
   .directive('quizEditQuestionsQuestion', function () {
     return {
       controller: [
-        '$scope', 'Restangular', 'Utils',
-        function ($scope, Restangular, Utils) {
+        '$scope', 'ConfirmationModal', 'Restangular', 'Utils',
+        function ($scope, ConfirmationModal, Restangular, Utils) {
 
           var restangularize = function (data) {
             return Restangular.restangularizeElement(null, data, 'answer');
@@ -23,18 +23,30 @@ angular.module('bulbs.quiz.edit.questions.question', [
           };
 
           $scope.answerDelete = function (answer, index) {
-            restangularize(answer).remove()
-              .then(function () {
-                Utils.removeFrom($scope.question.answer_set, index);
-              })
-              .catch(function () {
-                // TODO : hook in with an alert service to display error
-                console.error('Failed to remove question');
-              });
+            var modalScope = $scope.$new();
+            modalScope.modalOnOk = function () {
+              restangularize(answer).remove()
+                .then(function () {
+                  Utils.removeFrom($scope.question.answer_set, index);
+                })
+                .catch(function () {
+                  // TODO : hook in with an alert service to display error
+                  console.error('Failed to remove question');
+                });
+            };
+            modalScope.modalTitle = 'Delete Answer';
+            modalScope.modalBody = 'Deleting this answer cannot be undone, are you sure you want to delete?';
+            modalScope.modalOkText = 'Delete';
+            modalScope.modalCancelText = 'Cancel';
+            new ConfirmationModal(modalScope);
           };
 
           $scope.answerAdd = function () {
-            var newAnswer = restangularize({question: $scope.question.id});
+            var newAnswer = restangularize({
+              question: $scope.question.id,
+              is_correct: false,
+              points: 1
+            });
 
             newAnswer.post()
               .then(function (data) {

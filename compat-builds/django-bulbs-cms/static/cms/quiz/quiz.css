@@ -1,6 +1,16 @@
-quiz-edit h4 {
-  font-weight: bold;
+quiz-edit .quiz-helper-text {
+  color: #a8a8a8;
+  font-style: italic;
+  font-weight: normal;
+  margin-left: 5px; }
+quiz-edit .quiz-options-header {
   margin: 0 0 15px; }
+  quiz-edit .quiz-options-header h4 {
+    display: inline-block;
+    font-weight: bold;
+    margin: 0 5px 0 0; }
+  quiz-edit .quiz-options-header span {
+    margin-bottom: 15px; }
 quiz-edit label + input[type="checkbox"] {
   margin-left: 10px; }
 quiz-edit .form-inline label {

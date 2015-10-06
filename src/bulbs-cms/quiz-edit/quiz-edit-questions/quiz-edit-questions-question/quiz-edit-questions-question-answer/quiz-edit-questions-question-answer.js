@@ -19,7 +19,7 @@ angular.module('bulbs.quiz.questions.question.answer', [
           templateUrl: 'bulbs/quiz-edit/quiz-edit-questions/quiz-edit-questions-question/quiz-edit-questions-question-answer/quiz-edit-questions-question-answer.html',
           scope: {
             answer: '=',
-            quizStyle: '=',
+            quizStyle: '@',
             outcomes: '='
           }
         };
