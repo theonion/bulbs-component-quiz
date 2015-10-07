@@ -56,7 +56,7 @@ Django's settings file.
 
 1. Create a CMS page with the following html:
   ```html
-  <quiz-edit article="content"></quiz-edit>
+  <quiz-edit article-id="content.id"></quiz-edit>
   ```
   Where ```content``` is an angular scope variable containing the content's data.
 

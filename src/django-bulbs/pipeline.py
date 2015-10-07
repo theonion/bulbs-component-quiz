@@ -28,7 +28,7 @@ cms_css = PipelineWrapper()
 cms_css \
     .set_name("quiz_cms") \
     .set_output_filename("css/quiz-cms.css") \
-    .add_source_filename("cms/quiz/*.less")
+    .add_source_filename("cms/quiz/quiz.css")
 
 public_css = PipelineWrapper()
 public_css \

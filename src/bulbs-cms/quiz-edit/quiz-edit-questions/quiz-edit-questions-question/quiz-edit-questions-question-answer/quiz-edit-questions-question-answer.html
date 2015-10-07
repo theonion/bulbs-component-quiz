@@ -1,0 +1,66 @@
+<div class="col-sm-7">
+  <div class="form-group">
+    <label>Text</label>
+    <onion-editor
+        ng-model="answer.body"
+        role="singleline"
+        placeholder="Answer"
+        formatting="bold,italic,strike">
+    </onion-editor>
+  </div>
+
+  <div
+      class="form-group form-inline"
+      ng-show="quizStyle === 'tally' || quizStyle === 'cosmo'">
+    <label for="answerPoints{{ uuid }}">Points</label>
+    <input
+        id="answerPoints{{ uuid }}"
+        class="form-control"
+        type="number"
+        ng-model="answer.points"
+        placeholder="1"
+        size="3">
+  </div>
+
+  <div
+      class="form-group"
+      ng-show="quizStyle === 'multiple'">
+    <label for="answerOutcome{{ uuid }}">Connect the answer with this result</label>
+    <select
+        id="answerOutcome{{ uuid }}"
+        class="form-control"
+        ng-model="answer.outcome"
+        ng-options="outcome.id as outcome.title for outcome in outcomes">
+    </select>
+  </div>
+
+  <div
+      class="form-group"
+      ng-show="quizStyle === 'test'">
+    <label for="answerCorrect{{ uuid }}">Correct?</label>
+    <input
+        id="answerCorrect{{ uuid }}"
+        type="checkbox"
+        ng-model="answer.is_correct">
+  </div>
+
+  <div
+      class="form-group"
+      ng-show="quizStyle === 'test'">
+    <label>Answer Explanation</label>
+    <onion-editor
+        ng-model="answer.explanation"
+        role="multiline"
+        placeholder="Answer Explanation">
+    </onion-editor>
+  </div>
+</div>
+
+<div class="col-sm-5">
+  <label>Add Image</label>
+  <betty-editable
+      image="answer.detail_image"
+      ratio="1x1"
+      add-styles="fa fa-camera-retro add-image-box quiz-image-box">
+  </betty-editable>
+</div>

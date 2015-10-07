@@ -13,6 +13,11 @@ node_modules
 bower_components
 
 #######
+# sass #
+#######
+.sass-cache
+
+#######
 # etc #
 #######
 .DS_Store
