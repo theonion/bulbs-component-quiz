@@ -5,31 +5,22 @@
  */
 
 var $ = require('jquery');
-var utils = require('../quiz-utils');
 
-var QuizTest = function (options) {
-  this.settings = $.extend({
-    element: null,
-    outcomeRevealDuration: 500,
-    outcomeScrollToOffsetTop: -20,
-    revealAllAnswers: false,
-    sendAnalytics: false
-  }, options);
+var Quiz = require('./quiz-base');
 
-  this.$element = $(this.settings.element);
-
-  this.init();
+var QuizTest = function (element, options) {
+  Quiz.call(this, element, $.extend({
+    revealAllAnswers: false
+  }, options));
 };
 
-QuizTest.prototype.init = function () {
-  this.$element.find('.check-outcome').css('visibility', 'visible');
-};
+QuizTest.prototype = Object.create(Quiz.prototype);
+QuizTest.prototype.constructor = Quiz;
 
-QuizTest.prototype.setup = function () {
-
+QuizTest.prototype.setupQuestions = function () {
   var self = this;
 
-  this.$element.find('.question').each(function () {
+  this.getQuestions().each(function () {
 
     var $question = $(this);
 
@@ -61,33 +52,29 @@ QuizTest.prototype.setup = function () {
       });
     });
   });
-
-  this.$element.find('form').on('submit', function (e) {
-    e.preventDefault();
-
-    self.$element.find('.check-outcome').hide();
-    self.checkOutcome();
-  });
 };
 
-QuizTest.prototype.checkOutcome = function () {
-  var $window = $(window);
-  var $questions = this.$element.find('.question');
-  var $unanswered = $questions.filter('[data-unanswered="false"]');
+QuizTest.prototype.isQuizFinished = function () {
+  var finished = false;
 
-  // make sure they answered all the questions
-  if ($questions.length !== $unanswered.length) {
+  var $unanswered = this.$questions.filter('[data-unanswered="false"]');
+
+  if (this.$questions.length === $unanswered.length) {
+    finished = true;
+  } else {
     // some question not answered
+    finished = false;
+
     this.$element.find('.check-outcome').show();
 
     // scroll to first unanswered question
-    var firstUnanswered = $unanswered[0];
-    $window.scrollTo(firstUnanswered, {duration: 250});
-
-    return false;
+    $(window).scrollTo($unanswered[0], {duration: 250});
   }
 
-  // calculate user's score
+  return finished;
+};
+
+QuizTest.prototype.calculateScore = function () {
   var formData = this.$element.find('form').serializeArray();
   var score = 0;
   var i;
@@ -98,11 +85,14 @@ QuizTest.prototype.checkOutcome = function () {
     }
   }
 
-  // pick the outcome
-  var $outcomes = this.$element.find('.outcome');
+  return score;
+};
+
+QuizTest.prototype.pickOutcome = function (score) {
   var $bestOutcome;
+
   var minMaxScore = 0;
-  $outcomes.each(function () {
+  this.$element.find('.outcome').each(function () {
     var $outcome = $(this);
     var minScore = $outcome.data('minScore');
 
@@ -112,28 +102,7 @@ QuizTest.prototype.checkOutcome = function () {
     }
   });
 
-  // check if there's a best outcome
-  if ($bestOutcome) {
-    this.$element.find('.outcomes').show();
-
-    var self = this;
-    $bestOutcome.show(this.settings.outcomeRevealDuration, function () {
-      window.picturefill($bestOutcome);
-
-      self.$element.addClass('completed');
-    });
-
-    $window.scrollTo($bestOutcome, {
-      duration: this.settings.outcomeRevealDuration,
-      offset: {
-        top: this.settings.outcomeScrollToOffsetTop
-      }
-    });
-
-    if (this.settings.sendAnalytics) {
-      utils.sendResultAnalytics($bestOutcome);
-    }
-  }
+  return $bestOutcome;
 };
 
 module.exports = QuizTest;

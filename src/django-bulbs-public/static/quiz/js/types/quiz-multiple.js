@@ -4,29 +4,18 @@
  */
 
 var $ = require('jquery');
-var utils = require('../quiz-utils');
 
-var QuizMultiple = function (options) {
-  this.settings = $.extend({
-    element: null,
-    outcomeRevealDuration: 500,
-    outcomeScrollToOffsetTop: -20,
-    sendAnalytics: false
-  }, options);
+var Quiz = require('./quiz-base');
 
-  this.$element = $(this.settings.element);
-
-  this.init();
+var QuizMultiple = function (element, options) {
+  Quiz.call(this, element, options);
 };
 
-QuizMultiple.prototype.init = function () {
-  this.$element.find('.check-outcome').css('visibility', 'visible');
-};
+QuizMultiple.prototype = Object.create(Quiz.prototype);
+QuizMultiple.prototype.constructor = Quiz;
 
-QuizMultiple.prototype.setup = function () {
-  var self = this;
-
-  this.$element.find('.question').each(function () {
+QuizMultiple.prototype.setupQuestions = function () {
+  this.getQuestions().each(function () {
 
     var $question = $(this);
 
@@ -47,93 +36,67 @@ QuizMultiple.prototype.setup = function () {
       });
     });
   });
-
-  this.$element.find('form').on('submit', function (e) {
-    e.preventDefault();
-
-    self.$element.find('.check-outcome').hide();
-    self.checkOutcome();
-  });
 };
 
-MultipleChoiceQuiz.prototype.checkOutcome = function () {
-  var $window = $(window);
-  var $questions = this.$element.find('.question');
-  var $unanswered = $questions.filter('[data-unanswered="false"]');
+QuizMultiple.prototype.isQuizFinished = function () {
+  var finished = false;
 
-  // make sure they answered all the questions
-  if ($questions.length !== $unanswered.length) {
+  var $unanswered = this.$questions.filter('[data-unanswered="false"]');
+
+  if (this.$questions.length === $unanswered.length) {
+    finished = true;
+  } else {
     // some question not answered
+    finished = false;
+
     this.$element.find('.check-outcome').show();
 
     // scroll to first unanswered question
-    var firstUnanswered = $unanswered[0];
-    $window.scrollTo(firstUnanswered, {duration: 250});
-
-    return false;
+    $(window).scrollTo($unanswered[0], {duration: 250});
   }
 
-  var i;
+  return finished;
+};
 
-  // calculate user's score
+QuizMultiple.prototype.calculateScore = function () {
+  var scores = {};
+
   var formData = this.$element.find('form').serializeArray();
-  var counts = {};
   if (formData.length > 0) {
-    for (i = 0; i < formData.length; i++) {
+    for (var i = 0; i < formData.length; i++) {
       var dataum = formData[i];
       var outcomeCount = parseInt(datum.value);
 
       if (!isNaN(outcomeCount)) {
         // answer corresponds to an outcome, either init or add to outcome value
-        counts[outcomeCount] = counts[outcomeCount] ? counts[outcomeCount] + 1 : 1;
+        scores[outcomeCount] = scores[outcomeCount] ? scores[outcomeCount] + 1 : 1;
       }
     }
   } else {
     // no questions, select first outcome
-    counts[this.$element.find('.outcome').eq(0).data('id')] = 1;
+    scores[this.$element.find('.outcome').eq(0).data('id')] = 1;
   }
 
-  // pick the outcome
+  return scores;
+};
+
+QuizMultiple.prototype.pickOutcome = function (scores) {
   var $bestOutcome;
   var highScore = 0;
-  counts.keys().forEach(function (key) {
+  scores.keys().forEach(function (key) {
     var $outcome = $('#outcome-' + key);
-    var count = counts[key];
+    var score = scores[key];
 
-    if ((!$outcome.data('requirePerfect') || count === formData.length) &&
-        count >= highScore) {
+    if ((!$outcome.data('requirePerfect') || score === formData.length) &&
+        score >= highScore) {
       // either perfect score not required, or it is required and score is perfect,
       //  and it has a higher count than the high score, this is the current best
       $bestOutcome = $outcome;
-      highScore = count;
+      highScore = score;
     }
   });
 
-  // check if there's a best outcome
-  if ($bestOutcome) {
-    // disable all inputs now that we have an outcome
-    this.$element.find('input').prop('disabled', true);
-
-    this.$element.find('.outcomes').show();
-
-    var self = this;
-    $bestOutcome.show(this.settings.outcomeRevealDuration, function () {
-      window.picturefill($bestOutcome);
-
-      self.$element.addClass('completed');
-    });
-
-    $window.scrollTo($bestOutcome, {
-      duration: this.settings.outcomeRevealDuration,
-      offset: {
-        top: this.settings.outcomeScrollToOffsetTop
-      }
-    });
-
-    if (this.settings.sendAnalytics) {
-      utils.sendResultAnalytics($bestOutcome);
-    }
-  }
+  return $bestOutcome;
 };
 
 module.exports = QuizMultiple;

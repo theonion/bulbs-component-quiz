@@ -3,30 +3,18 @@
  */
 
 var $ = require('jquery');
-var utils = require('../quiz-utils');
 
-var QuizCosmode = function (options) {
-  this.settings = $.extend({
-    element: null,
-    outcomeRevealDuration: 500,
-    outcomeScrollToOffsetTop: -20,
-    sendAnalytics: false
-  }, options);
+var Quiz = require('./quiz-base');
 
-  this.$element = $(this.settings.element);
-
-  this.init();
+var QuizCosmode = function (element, options) {
+  Quiz.call(this, element, options);
 };
 
-QuizCosmode.prototype.init = function () {
-  this.$element.find('.check-outcome').css('visibility', 'visible');
-};
+QuizCosmode.prototype = Object.create(Quiz.prototype);
+QuizCosmode.prototype.constructor = Quiz;
 
-QuizCosmode.prototype.setup = function () {
-
-  var self = this;
-
-  this.$element.find('.question').each(function () {
+QuizCosmode.prototype.setupQuestions = function () {
+  this.getQuestions().each(function () {
 
     var $question = $(this);
 
@@ -47,46 +35,45 @@ QuizCosmode.prototype.setup = function () {
       });
     });
   });
-
-  this.$element.find('form').on('submit', function (e) {
-    e.preventDefault();
-
-    self.$element.find('.check-outcome').hide();
-    self.checkOutcome();
-  });
 };
 
-QuizTest.prototype.checkOutcome = function () {
-  var $window = $(window);
-  var $questions = this.$element.find('.question');
-  var $unanswered = $questions.filter('[data-unanswered="false"]');
+QuizCosmode.prototype.isQuizFinished = function () {
+  var finished = false;
 
-  // make sure they answered all the questions
-  if ($questions.length !== $unanswered.length) {
+  var $unanswered = this.$questions.filter('[data-unanswered="false"]');
+
+  if (this.$questions.length === $unanswered.length) {
+    finished = true;
+  } else {
     // some question not answered
+    finished = false;
+
     this.$element.find('.check-outcome').show();
 
     // scroll to first unanswered question
-    var firstUnanswered = $unanswered[0];
-    $window.scrollTo(firstUnanswered, {duration: 250});
-
-    return false;
+    $(window).scrollTo($unanswered[0], {duration: 250});
   }
 
-  // calculate user's score
+  return finished;
+};
+
+QuizCosmode.prototype.calculateScore = function () {
   var formData = this.$element.find('form').serializeArray();
   var score = 0;
   var i;
   for (i = 0; i < formData.length; i++) {
-      var datum = formData[i];
-      score += parseInt(datum.value);
+    var datum = formData[i];
+    score += parseInt(datum.value);
   }
 
-  // pick the outcome
-  var $outcomes = this.$element.find('.outcome');
+  return score;
+};
+
+QuizCosmode.prototype.pickOutcome = function (score) {
   var $bestOutcome;
+
   var minMaxScore = 0;
-  $outcomes.each(function () {
+  this.$element.find('.outcome').each(function () {
     var $outcome = $(this);
     var minScore = $outcome.data('minScore');
 
@@ -96,31 +83,7 @@ QuizTest.prototype.checkOutcome = function () {
     }
   });
 
-  // check if there's a best outcome
-  if ($bestOutcome) {
-    // disable all inputs now that we have an outcome
-    this.$element.find('input').prop('disabled', true);
-
-    this.$element.find('.outcomes').show();
-
-    var self = this;
-    $bestOutcome.show(this.settings.outcomeRevealDuration, function () {
-      window.picturefill($bestOutcome);
-
-      self.$element.addClass('completed');
-    });
-
-    $window.scrollTo($bestOutcome, {
-      duration: this.settings.outcomeRevealDuration,
-      offset: {
-        top: this.settings.outcomeScrollToOffsetTop
-      }
-    });
-
-    if (this.settings.sendAnalytics) {
-      utils.sendResultAnalytics($bestOutcome);
-    }
-  }
+  return $bestOutcome;
 };
 
 module.exports = QuizCosmode;
