@@ -1,0 +1,34 @@
+{% extends "partials/article-detail.html" %}
+
+{% load core betty %}
+
+{% block detail_body %}
+  {{ block.super }}
+  <div 
+    class="quiz-body quiz-style-{{ content.quiz_style }} 
+    {% if content.show_all_answers %}quiz-show-all-answers{% endif %}" 
+    data-track-category="Article: Quiz">
+    <noscript>
+      Our state-of-the-art quizzes require JavaScript.
+    </noscript>
+    <form action=".">
+      <ol class="questions">
+        {% block quiz_body %}
+        {% endblock quiz_body %}
+      </ol>
+      {% block button %}
+        <noscript>
+          You need to enable JavaScript in order to get your results.
+        </noscript>
+        <button 
+          class="check-outcome" 
+          type="submit" 
+          data-track-action="Submit"
+          data-track-label="#">
+          {{ content.result_button_text|default:"Get results" }}
+        </button>
+      {% endblock %}
+    </form>
+    {% include "quiz/partials/outcome_list.html" with outcome_set=content.outcome_set %}
+  </div>
+{% endblock %}
