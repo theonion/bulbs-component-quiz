@@ -1,0 +1,56 @@
+.quiz-body {
+
+  ul, ol {
+    padding-left: 0;
+    list-style: none;
+    margin-top: 0;
+  }
+
+  .question .row.post-answer-body {
+    display: none;
+  }
+
+  &.completed .question {
+    &, label {
+      cursor: default;
+    }
+  }
+
+  .answer {
+    cursor: pointer;
+
+    &:first-child {
+      margin-top: 0;
+    } 
+
+    label {
+      display: block;
+      cursor: inherit;
+      position: relative;
+    }
+
+    input { 
+      display: none;
+    }
+  }
+
+  .answer-explanation {
+    cursor: default;
+    display: none;
+  }  
+
+  .reveal-all-answers, .reveal-answer {
+    
+    &[data-unanswered=false] label {
+      cursor: default;
+    }
+  }
+
+  .check-outcome {
+    visibility: hidden;
+  }
+
+  .outcomes {
+    display: none;
+  }
+}

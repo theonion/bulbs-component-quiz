@@ -1,34 +1,36 @@
-{% extends "partials/article-detail.html" %}
-
 {% load core betty %}
 
-{% block detail_body %}
-  {{ block.super }}
-  <div 
-    class="quiz-body quiz-style-{{ content.quiz_style }} 
-    {% if content.show_all_answers %}quiz-show-all-answers{% endif %}" 
-    data-track-category="Article: Quiz">
-    <noscript>
-      Our state-of-the-art quizzes require JavaScript.
-    </noscript>
-    <form action=".">
-      <ol class="questions">
-        {% block quiz_body %}
-        {% endblock quiz_body %}
-      </ol>
-      {% block button %}
-        <noscript>
-          You need to enable JavaScript in order to get your results.
-        </noscript>
-        <button 
-          class="check-outcome" 
-          type="submit" 
-          data-track-action="Submit"
-          data-track-label="#">
-          {{ content.result_button_text|default:"Get results" }}
-        </button>
-      {% endblock %}
-    </form>
-    {% include "quiz/partials/outcome_list.html" with outcome_set=content.outcome_set %}
-  </div>
-{% endblock %}
+{% comment %}
+This should be included with an include tag, with the following variables:
+  - content <= the clickventure content object.
+  - share_partial_template <= string path to a share partial, where the variable share_title
+      will be passed in.
+{% endcomment %}
+
+<div 
+  class="quiz-body quiz-style-{{ content.quiz_style }} 
+  {% if content.show_all_answers %}quiz-show-all-answers{% endif %}" 
+  data-track-category="Article: Quiz">
+  <noscript>
+    Our state-of-the-art quizzes require JavaScript.
+  </noscript>
+  <form action=".">
+    <ol class="questions">
+      {% block quiz_body %}
+      {% endblock quiz_body %}
+    </ol>
+    {% block button %}
+      <noscript>
+        You need to enable JavaScript in order to get your results.
+      </noscript>
+      <button 
+        class="check-outcome" 
+        type="submit" 
+        data-track-action="Submit"
+        data-track-label="#">
+        {{ content.result_button_text|default:"Get results" }}
+      </button>
+    {% endblock %}
+  </form>
+  {% include "quiz/partials/outcome_list.html" with outcome_set=content.outcome_set %}
+</div>
