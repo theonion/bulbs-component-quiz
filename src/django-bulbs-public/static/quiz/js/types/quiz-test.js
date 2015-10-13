@@ -57,7 +57,9 @@ QuizTest.prototype.setupQuestions = function () {
 QuizTest.prototype.isQuizFinished = function () {
   var finished = false;
 
-  var $unanswered = this.$questions.filter('[data-unanswered="false"]');
+  var $unanswered = this.$questions.filter(function () {
+    return $(this).data('unanswered') === true;
+  });
 
   if (this.$questions.length === $unanswered.length) {
     finished = true;
@@ -91,7 +93,7 @@ QuizTest.prototype.calculateScore = function () {
 QuizTest.prototype.pickOutcome = function (score) {
   var $bestOutcome;
 
-  var minMaxScore = 0;
+  var maxMinScore = 0;
   this.$element.find('.outcome').each(function () {
     var $outcome = $(this);
     var minScore = $outcome.data('minScore');

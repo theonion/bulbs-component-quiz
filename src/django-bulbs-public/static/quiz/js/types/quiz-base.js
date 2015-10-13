@@ -95,7 +95,7 @@ Quiz.prototype.completeQuiz = function ($bestOutcome) {
       self.$element.addClass('completed');
     });
 
-    $window.scrollTo($bestOutcome, {
+    $(window).scrollTo($bestOutcome, {
       duration: this.settings.outcomeRevealDuration,
       offset: {
         top: this.settings.outcomeScrollToOffsetTop

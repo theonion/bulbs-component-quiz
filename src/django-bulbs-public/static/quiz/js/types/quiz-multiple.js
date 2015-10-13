@@ -41,9 +41,11 @@ QuizMultiple.prototype.setupQuestions = function () {
 QuizMultiple.prototype.isQuizFinished = function () {
   var finished = false;
 
-  var $unanswered = this.$questions.filter('[data-unanswered="false"]');
+  var $unanswered = this.$questions.filter(function () {
+    return $(this).data('unanswered') === true;
+  });
 
-  if (this.$questions.length === $unanswered.length) {
+  if ($unanswered.length === 0) {
     finished = true;
   } else {
     // some question not answered

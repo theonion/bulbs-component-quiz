@@ -21,14 +21,14 @@ QuizTally.prototype.calculateScore = function () {
     score += parseInt($(el).attr('value'));
   });
 
-  return score
+  return score;
 };
 
 QuizTally.prototype.pickOutcome = function (score) {
   var $bestOutcome;
 
   var $outcomes = this.$element.find('.outcome');
-  var minMaxScore = 0;
+  var maxMinScore = 0;
   $outcomes.each(function () {
     var $outcome = $(this);
     var minScore = $outcome.data('minScore');

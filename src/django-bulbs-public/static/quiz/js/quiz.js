@@ -20,23 +20,28 @@ var QuizTest = require('./types/quiz-test');
 var QuizSetup = function (selector) {
   return $(selector).each(function () {
 
-    var $el = $(el);
+    var $el = $(this);
     var quizStyle = $el.data('quizStyle');
 
     var type;
     var options = {
       revealAllAnswers: $el.data('revealAllAnswers') || false
     };
-    if (type === 'cosmo') {
-      type = QuizCosmode;
-    } else if (type === 'multiple') {
-      type = QuizMultiple;
-    } else if (type === 'tally') {
-      type = QuizTally;
-    } else if (type === 'test') {
-      type = QuizTest;
-    } else {
-      console.error('Invalid quiz type "' + quizStyle + '" cannot setup quiz');
+    switch (quizStyle) {
+      case 'cosmo':
+        type = QuizCosmode;
+        break;
+      case 'multiple':
+        type = QuizMultiple;
+        break;
+      case 'tally':
+        type = QuizTally;
+        break;
+      case 'test':
+        type = QuizTest;
+        break;
+      default:
+        console.error('Invalid quiz type "' + quizStyle + '" cannot setup quiz');
     }
 
     if (type) {
