@@ -1,0 +1,12 @@
+{% comment %}
+This should be included with an include tag, with the following variables:
+  - content <= the quiz content object.
+  - share_partial_template <= string path to a share partial, where the variable share_title
+      will be passed in.
+
+This template will select the correct quiz template type based on quiz_style.
+{% endcomment %}
+
+{% with template_name=content.quiz_style|add:"_detail.html" %}
+  {% include "quiz/partials/types/quiz_"|add:template_name with content=content share_partial_template=share_partial_template%}
+{% endwith %}

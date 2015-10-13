@@ -1,4 +1,4 @@
-{% extends "quiz/quiz_base_detail.html" %}
+{% extends "quiz/partials/quiz_base_detail.html" %}
 
 {% block type %}boolean{% endblock %}
 
@@ -16,7 +16,7 @@
 
       <div class="answer-container content-box">
         {% include "quiz/partials/image.html" %}
-        
+
         <div class="inner">
           {{ answer.body|safe }}
         </div>

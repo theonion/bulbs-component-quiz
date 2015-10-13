@@ -1,10 +1,9 @@
-{% extends "quiz/quiz_base_detail.html" %}
+{% extends "quiz/partials/quiz_base_detail.html" %}
 
 {% block type %}multiple-choice{% endblock %}
 
 {% block answer_data %}
   data-outcome="{{ answer.outcome_id }}"
-  data-correct="{{ answer.is_correct }}"
 {% endblock %}
 
 {% block answer_body %}
@@ -13,7 +12,7 @@
         id="answer-{{ answer.id }}"
         type="radio"
         name="question-{{ question.id }}"
-        value="{{ answer.is_correct }}">
+        value="{{ answer.outcome_id }}">
 
     <label
         for="answer-{{ answer.id }}"
@@ -26,6 +25,5 @@
           {{ answer.body|safe }}
         </div>
       </div>
-    </label>
   </div>
 {% endblock %}
