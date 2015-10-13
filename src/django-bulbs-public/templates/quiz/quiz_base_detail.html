@@ -13,9 +13,48 @@ This should be included with an include tag, with the following variables:
   </noscript>
   <form>
     <ol class="questions">
-      {% block quiz_body %}
-      {% endblock quiz_body %}
+
+      {% for question in content.question_set.all %}
+        <li class="question {% block type %}{% endblock %}">
+          <dl class="{% if question.answer_set.all.0.detail_image %}layout-grid{% else %}layout-stacked{% endif %}">
+
+            {% include "quiz/partials/prompt.html" %}
+
+            <div class="row">
+              {% for answer in question.answer_set.all %}
+                <div
+                    class="answer {% if answer.detail_image %}image{% endif %}"
+                    {% block answer_data %}{% endblock %}>
+
+                  {% block answer_body %}{% endblock %}
+
+                  {% if answer.explanation %}
+                    <div class="answer-explanation">
+                      {{ answer.explanation|safe }}
+                    </div>
+                  {% endif %}
+
+                </div>
+
+                {% if forloop.counter|divisibleby:2 %}
+                  </div>
+                  <div class="row">
+                {% endif %}
+              {% endfor %}
+            </div>
+
+            {# Any immediate result #}
+            {% if question.post_answer_body %}
+              <div class="row post-answer-body">
+                {{ question.post_answer_body|safe }}
+              </div>
+            {% endif %}
+          </dl>
+        </li>
+      {% endfor %}
+
     </ol>
+
     {% block button %}
       <noscript>
         You need to enable JavaScript in order to get your results.

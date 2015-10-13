@@ -1,54 +1,29 @@
 {% extends "quiz/quiz_base_detail.html" %}\
 
 {% block type %}multiple-choice{% endblock %}
-{% block quiz_body %}
-  {% for question in content.question_set.all %}
-    <li class="question">
-      <dl class="{% if question.answer_set.all.0.detail_image %}layout-grid{% else %}layout-stacked{% endif %}">
-        {% include "quiz/partials/prompt.html" %}
 
-        <div class="row">
-          {% for answer in question.answer_set.all %}
-            <div
-                class="answer {% if answer.detail_image %}image{% endif %}"
-                data-outcome="{{ answer.outcome_id }}">
+{% block answer_data %}
+  data-outcome="{{ answer.outcome_id }}"
+{% endblock %}
 
-              <input
-                  id="answer-{{ answer.id }}"
-                  type="radio"
-                  name="question-{{ question.id }}"
-                  value="{{ answer.outcome_id }}">
+{% block answer_body %}
+  <div>
+    <input
+        id="answer-{{ answer.id }}"
+        type="radio"
+        name="question-{{ question.id }}"
+        value="{{ answer.outcome_id }}">
 
-              <label
-                  for="answer-{{ answer.id }}"
-                  class="{% if answer.detail_image %}has-image{% endif %}">
-                <div class="answer-container content-box">
-                  {% include "quiz/partials/image.html" %}
-                  <div class="inner">
-                    {{ answer.body|safe }}
-                  </div>
-                </div>
-              </label>
-              {% if answer.explanation %}
-                <div class="answer-explanation">
-                  {{ answer.explanation|safe }}
-                </div>
-              {% endif %}
-            </div>
-            {% if forloop.counter|divisibleby:2 %}
-              </div>
-              <div class="row">
-            {% endif %}
-          {% endfor %}
-              </div>
+    <label
+        for="answer-{{ answer.id }}"
+        class="{% if answer.detail_image %}has-image{% endif %}">
 
-        {# Any immediate result #}
-        {% if question.post_answer_body %}
-          <div class="row post-answer-body">
-            {{ question.post_answer_body|safe }}
-          </div>
-        {% endif %}
-      </dl>
-    </li>
-  {% endfor %}
+      <div class="answer-container content-box">
+        {% include "quiz/partials/image.html" %}
+
+        <div class="inner">
+          {{ answer.body|safe }}
+        </div>
+      </div>
+  </div>
 {% endblock %}

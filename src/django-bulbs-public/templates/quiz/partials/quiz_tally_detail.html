@@ -1,28 +1,41 @@
 {% extends "quiz/quiz_base_detail.html" %}
 
 {% block type %}boolean{% endblock %}
+
+{% block answer_body %}
+  <div>
+    <input
+        type="checkbox"
+        name="question-{{ question.id }}"
+        id="answer-{{ answer.id }}"
+        value="{{ answer.points }}">
+
+    <label
+        for="answer-{{ answer.id }}"
+        class="{% if answer.detail_image %}has-image{% endif %}">
+
+      <div class="answer-container content-box">
+        {% include "quiz/partials/image.html" %}
+        
+        <div class="inner">
+          {{ answer.body|safe }}
+        </div>
+      </div>
+    </label>
+  </div>
+{% endblock %}
+
 {% block quiz_body %}
   {% for question in content.question_set.all %}
     <li class="question boolean">
       <dl class="{% if question.answer_set.all.0.detail_image %}layout-grid{% else %}layout-stacked{% endif %}">
+
         {% include "quiz/partials/prompt.html" %}
 
         <div class="row">
           {% for answer in question.answer_set.all %}
             <div class="answer {% if answer.detail_image %}image{% endif %}">
-              <input type="checkbox"
-                  name="question-{{ question.id }}"
-                  id="answer-{{ answer.id }}"
-                  value="{{ answer.points }}">
-              <label for="answer-{{ answer.id }}"
-                  class="{% if answer.detail_image %}has-image{% endif %}">
-                <div class="answer-container content-box">
-                  {% include "quiz/partials/image.html" %}
-                  <div class="inner">
-                    {{ answer.body|safe }}
-                  </div>
-                </div>
-              </label>
+
               {% if answer.explanation %}
               <div class="answer-explanation">
                 {{ answer.explanation|safe }}
