@@ -122,3 +122,5 @@ Quiz.prototype.checkOutcome = function () {
 
   this.completeQuiz($bestOutcome);
 };
+
+module.exports = Quiz;
