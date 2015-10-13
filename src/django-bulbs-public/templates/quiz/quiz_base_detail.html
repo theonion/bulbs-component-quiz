@@ -6,8 +6,10 @@ This should be included with an include tag, with the following variables:
 {% endcomment %}
 
 <div
-    class="quiz-container quiz-style-{{ content.quiz_style }} {% if content.show_all_answers %}quiz-show-all-answers{% endif %}"
-    data-track-category="Article: Quiz">
+    class="quiz-container quiz-style-{{ content.quiz_style }}"
+    data-quiz-style="{{ content.quiz_style }}"
+    data-track-category="Article: Quiz"
+    {% if content.show_all_answers %}data-reveal-all-answers="true"{% endif %}>
   <noscript>
     Our state-of-the-art quizzes require JavaScript.
   </noscript>
