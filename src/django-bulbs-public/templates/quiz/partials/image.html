@@ -1,7 +1,9 @@
 {% load betty %}
+
 {% if answer.detail_image %}
   <figure class="answer-image thumb">
     {% cropped answer.detail_image %}
+
     {% if answer.detail_image.caption %}
       <figcaption>{{ answer.detail_image.caption }}</figcaption>
     {% endif %}

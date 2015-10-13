@@ -1,4 +1,4 @@
-.quiz-body {
+.quiz-container {
 
   ul, ol {
     padding-left: 0;
@@ -21,7 +21,7 @@
 
     &:first-child {
       margin-top: 0;
-    } 
+    }
 
     label {
       display: block;
@@ -29,7 +29,7 @@
       position: relative;
     }
 
-    input { 
+    input {
       display: none;
     }
   }
@@ -37,10 +37,10 @@
   .answer-explanation {
     cursor: default;
     display: none;
-  }  
+  }
 
   .reveal-all-answers, .reveal-answer {
-    
+
     &[data-unanswered=false] label {
       cursor: default;
     }
