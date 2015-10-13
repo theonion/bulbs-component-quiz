@@ -2,7 +2,7 @@
  * Tally quiz-style. Outcome is determined by the number of questions checked.
  */
 
-var $ = require('jquery');
+var $ = window.jQuery;
 
 var Quiz = require('./quiz-base');
 

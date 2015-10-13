@@ -3,7 +3,7 @@
  *  one is displayed.
  */
 
-var $ = require('jquery');
+var $ = window.jQuery;
 
 var Quiz = require('./quiz-base');
 

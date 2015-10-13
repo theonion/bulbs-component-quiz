@@ -2,7 +2,7 @@
  * Quiz that is a blend of tally and multiple-choice.
  */
 
-var $ = require('jquery');
+var $ = window.jQuery;
 
 var Quiz = require('./quiz-base');
 

@@ -2,7 +2,7 @@
  * Base prototype for any quiz type.
  */
 
-var $ = require('jquery');
+var $ = window.jQuery;
 var utils = require('../quiz-utils');
 
 var Quiz = function (element, options) {

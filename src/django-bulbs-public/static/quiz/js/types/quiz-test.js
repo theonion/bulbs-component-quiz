@@ -4,7 +4,7 @@
  * Quiz which has right and wrong answers.
  */
 
-var $ = require('jquery');
+var $ = window.jQuery;
 
 var Quiz = require('./quiz-base');
 
