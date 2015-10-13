@@ -1,4 +1,4 @@
-var Analytics = require('bulbs.public.analyticsManager');
+var Analytics = require('bulbs-public-analytics-manager/src/analytics-manager');
 
 module.exports = {
 
