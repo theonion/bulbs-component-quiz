@@ -27,7 +27,7 @@ QuizTest.prototype.setupQuestions = function () {
 
     $question.find('.answer input').on('change', function (e) {
       var $input = $(this);
-      var $answer = $input.parent('.answer');
+      var $answer = $input.parents('.answer');
 
       // you may only answer once per question, disable all inputs
       $question.find('input').prop('disabled', true);
