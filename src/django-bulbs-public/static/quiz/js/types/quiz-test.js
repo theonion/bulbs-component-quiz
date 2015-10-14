@@ -21,34 +21,28 @@ QuizTest.prototype.setupQuestions = function () {
   var self = this;
 
   this.getQuestions().each(function () {
-
     var $question = $(this);
 
     $question.data('unanswered', true);
 
-    $question.find('.answer').each(function () {
+    $question.find('.answer input').on('change', function (e) {
+      var $input = $(this);
+      var $answer = $input.parent('.answer');
 
-      var $answer = $(this);
-      var $inputs = $answer.find('input');
-      $inputs.on('change', function (e) {
+      // you may only answer once per question, disable all inputs
+      $question.find('input').prop('disabled', true);
 
-        var $input = $(this);
+      $question.data('unanswered', false);
 
-        // you may only answer once per question, disable all inputs
-        $inputs.not($input).prop('disabled', true);
+      // reveal explanation for the selected answer only
+      $answer.find('.answer-explanation').show(100, function () {
+        window.picturefill(this);
+      });
+      $question.addClass(self.revealAllAnswers ? 'reveal-all-answers' : 'reveal-answer');
 
-        $question.data('unanswered', false);
-
-        // reveal explanation for the selected answer only
-        $answer.find('.answer-explanation').show(100, function () {
-          window.picturefill(this);
-        });
-        $question.addClass(self.revealAllAnswers ? 'reveal-all-answers' : 'reveal-answer');
-
-        // reveal post-answer content
-        $question.find('.post-answer-body').show(100, function () {
-          window.picturefill(this);
-        });
+      // reveal post-answer content
+      $question.find('.post-answer-body').show(100, function () {
+        window.picturefill(this);
       });
     });
   });
