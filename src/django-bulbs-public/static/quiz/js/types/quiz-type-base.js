@@ -3,10 +3,18 @@
  */
 
 var $ = window.jQuery;
-var utils = require('../quiz-utils');
+var Analytics = require('bulbs-public-analytics-manager/src/analytics-manager');
+
 
 var Quiz = function (element, options) {
     this.settings = $.extend({
+      getAnalyticsObject: function ($outcome) {
+        return {
+          eventCategory: 'Quiz result: ' + $outcome.find('.quiz-outcome').text(),
+          eventAction: 'Quiz result',
+          eventLabel: 'None'
+        };
+      },
       outcomeRevealDuration: 500,
       outcomeScrollToOffsetTop: -20,
       sendAnalytics: false
@@ -76,6 +84,10 @@ Quiz.prototype.calculateScore = function () { return 0; };
  */
 Quiz.prototype.pickOutcome = function (score) {};
 
+Quiz.prototype.sendResultAnalytics = function ($outcome) {
+  Analytics.sendEvent(this.settings.getAnalyticsObject($outcome));
+};
+
 /**
  * Logic to finish up quiz.
  *
@@ -103,7 +115,7 @@ Quiz.prototype.completeQuiz = function ($bestOutcome) {
     });
 
     if (this.settings.sendAnalytics) {
-      utils.sendResultAnalytics($bestOutcome);
+      this.sendResultAnalytics($bestOutcome);
     }
   }
 };
