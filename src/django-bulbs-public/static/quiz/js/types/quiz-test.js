@@ -61,7 +61,7 @@ QuizTest.prototype.isQuizFinished = function () {
     return $(this).data('unanswered') === true;
   });
 
-  if (this.$questions.length === $unanswered.length) {
+  if ($unanswered.length === 0) {
     finished = true;
   } else {
     // some question not answered
