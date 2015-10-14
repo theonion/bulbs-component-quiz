@@ -14,14 +14,12 @@ QuizTally.prototype = Object.create(Quiz.prototype);
 QuizTally.prototype.constructor = Quiz;
 
 QuizTally.prototype.calculateScore = function () {
-  var score = 0;
-
-  var formData = this.$element.find('form').serializeArray();
-  this.$questions.each(function (i, el) {
-    score += parseInt($(el).attr('value'));
-  });
-
-  return score;
+  return this.$element
+    .find('form')
+    .serializeArray()
+    .reduce(function (prev, curr) {
+      return prev + Number(curr.value);
+    }, 0);
 };
 
 QuizTally.prototype.pickOutcome = function (score) {
