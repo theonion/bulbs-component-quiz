@@ -84,6 +84,11 @@ Quiz.prototype.calculateScore = function () { return 0; };
  */
 Quiz.prototype.pickOutcome = function (score) {};
 
+/**
+ * Interface with Analytics to send an analytics event based on given outcome.
+ *
+ * @param {jquery} $outcome - outcome to base analytics event on.
+ */
 Quiz.prototype.sendResultAnalytics = function ($outcome) {
   Analytics.sendEvent(this.settings.getAnalyticsObject($outcome));
 };
