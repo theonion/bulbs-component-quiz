@@ -16,12 +16,12 @@
         {{ content.title|removetags:"p br"|safe }}
       </h2>
 
-      {% if outcome.image %}
+      {% if outcome.detail_image %}
         <figure class="thumb">
-          {% cropped outcome.image %}
-          {% if outcome.image.caption %}
+          {% cropped outcome.detail_image %}
+          {% if outcome.detail_image.caption %}
             <figcaption>
-              {{ outcome.image.caption }}
+              {{ outcome.detail_image.caption }}
             </figcaption>
           {% endif %}
         </figure>
