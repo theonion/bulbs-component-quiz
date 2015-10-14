@@ -9,15 +9,18 @@ describe('QuizTest', function () {
   beforeEach(function () {
     $quizEl = $(
       '<div>' +
-        '<div class="question">' +
-          '<div class="answer">' +
-            '<input type="checkbox">' +
-            '<div class="answer-explanation" style="display:none"></div>' +
-          '</div>' +
-          '<div class="answer">' +
-            '<input type="checkbox">' +
-          '</div>' +
-        '<div>' +
+        '<form>' +
+          '<div class="question">' +
+            '<div class="answer">' +
+              '<input type="checkbox" vaue="0">' +
+              '<div class="answer-explanation" style="display:none"></div>' +
+            '</div>' +
+            '<div class="answer">' +
+              '<input type="checkbox" value="1">' +
+              '<div class="answer-explanation" style="display:none"></div>' +
+            '</div>' +
+          '<div>' +
+        '</form>' +
       '</div>'
     );
 
@@ -32,7 +35,7 @@ describe('QuizTest', function () {
     jasmine.clock().uninstall();
   });
 
-  describe('.setupQuestions', function () {
+  describe('setupQuestions', function () {
 
     it('should prevent other answers from being selected after choosing an answer', function () {
 
@@ -60,6 +63,18 @@ describe('QuizTest', function () {
       $inputs.eq(0).trigger('change');
 
       expect($quizEl.find('.answer-explanation').is(':visible')).toEqual(true);
+    });
+  });
+
+  describe('calculateScore', function () {
+
+    it('should score based on the number of correctly checked inputs', function () {
+
+      var $inputs = $quizEl.find('.answer input');
+
+      $inputs.eq(1).prop('checked', true);
+
+      expect(quiz.calculateScore()).toEqual(1);
     });
   });
 });

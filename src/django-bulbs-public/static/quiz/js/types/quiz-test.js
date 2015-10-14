@@ -71,16 +71,12 @@ QuizTest.prototype.isQuizFinished = function () {
 };
 
 QuizTest.prototype.calculateScore = function () {
-  var formData = this.$element.find('form').serializeArray();
   var score = 0;
-  var i;
-  for (i = 0; i < formData.length; i++) {
-    var datum = formData[i];
-    if (datum.value === 'True') {
-      score++;
-    }
-  }
-
+  this.$element
+    .find('form input:checked')
+    .each(function (prev, curr) {
+      score += Number($(curr).prop('value'));
+    });
   return score;
 };
 

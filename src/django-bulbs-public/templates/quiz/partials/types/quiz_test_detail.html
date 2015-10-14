@@ -13,7 +13,7 @@
         id="answer-{{ answer.id }}"
         type="radio"
         name="question-{{ question.id }}"
-        value="{{ answer.is_correct }}">
+        value="{% if answer.is_correct %}1{% else %}0{% endif %}">
 
     <label
         for="answer-{{ answer.id }}"
