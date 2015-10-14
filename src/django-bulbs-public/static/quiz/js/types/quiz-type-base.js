@@ -58,7 +58,7 @@ Quiz.prototype.setup = function () {
  *
  * @returns {boolean} true if quiz is finished, false otherwise.
  */
-Quiz.prototype.isQuizFinished = function () { return true; }
+Quiz.prototype.isQuizFinished = function () { return true; };
 
 /**
  * Calculate user's score. Result of this function will be passed into the

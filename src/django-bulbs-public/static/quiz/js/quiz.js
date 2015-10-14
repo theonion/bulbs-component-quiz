@@ -15,18 +15,20 @@ var QuizTest = require('./types/quiz-test');
  *  available for use.
  *
  * @param {jquery|string|HTMLElement} selector - selection to turn into quizzes.
+ * @param {object} options - options to use on all quizzes. Will override any
+ *    settings provided by data attributes.
  * @returns {jquery} selector as a jquery object.
  */
-var QuizSetup = function (selector) {
+var QuizSetup = function (selector, options) {
   return $(selector).each(function () {
 
     var $el = $(this);
     var quizStyle = $el.data('quizStyle');
 
     var type;
-    var options = {
+    var settings = $.extend({
       revealAllAnswers: $el.data('revealAllAnswers') || false
-    };
+    }, options);
     switch (quizStyle) {
       case 'cosmo':
         type = QuizCosmode;
@@ -45,7 +47,7 @@ var QuizSetup = function (selector) {
     }
 
     if (type) {
-      $el.data('pluginQuiz', new type($el, options));
+      $el.data('pluginQuiz', new type($el, settings));
     }
   });
 };

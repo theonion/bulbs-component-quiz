@@ -5,7 +5,7 @@
 
 var $ = window.jQuery;
 
-var Quiz = require('./quiz-base');
+var Quiz = require('./quiz-type-base');
 
 var QuizMultiple = function (element, options) {
   Quiz.call(this, element, options);
