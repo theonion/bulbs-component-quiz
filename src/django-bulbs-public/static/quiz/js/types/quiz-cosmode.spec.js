@@ -1,9 +1,9 @@
 var $ = window.jQuery = require('jquery');
 $.scrollTo = require('jquery.ScrollTo');
 
-var QuizTest = require('./quiz-test');
+var QuizCosmode = require('./quiz-cosmode');
 
-describe('QuizTest', function () {
+describe('QuizCosmode', function () {
 
   var quiz;
   var $quizEl;
@@ -30,7 +30,7 @@ describe('QuizTest', function () {
 
     $('body').append($quizEl);
 
-    quiz = new QuizTest($quizEl, {});
+    quiz = new QuizCosmode($quizEl, {});
 
     // makes animations complete immediately
     $.fx.off = true;

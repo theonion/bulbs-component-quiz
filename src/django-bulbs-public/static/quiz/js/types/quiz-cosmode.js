@@ -56,7 +56,7 @@ QuizCosmode.prototype.isQuizFinished = function () {
     this.$element.find('.check-outcome').show();
 
     // scroll to first unanswered question
-    $(window).scrollTo($unanswered[0], {duration: this.settings.scrollToDuration});
+    $.scrollTo($unanswered[0], {duration: this.settings.scrollToDuration});
   }
 
   return finished;

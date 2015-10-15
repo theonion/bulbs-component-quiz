@@ -57,7 +57,7 @@ Quiz.prototype.setupSubmit = function () {
  * Setup quiz for use.
  */
 Quiz.prototype.setup = function () {
-  this.$element.find('.check-outcome').css('visibility', 'visible');
+  this.$element.find('.check-outcome').show();
 
   this.setupQuestions();
   this.setupSubmit();
@@ -102,19 +102,17 @@ Quiz.prototype.sendResultAnalytics = function ($outcome) {
  */
 Quiz.prototype.completeQuiz = function ($bestOutcome) {
   if ($bestOutcome) {
-    // disable all inputs now that we have an outcome
-    this.$element.find('input').prop('disabled', true);
 
+    this.$element.find('input').prop('disabled', true);
     this.$element.find('.outcomes').show();
+    this.$element.addClass('completed');
 
     var self = this;
     $bestOutcome.show(this.settings.outcomeRevealDuration, function () {
       window.picturefill($bestOutcome);
-
-      self.$element.addClass('completed');
     });
 
-    $(window).scrollTo($bestOutcome, {
+    $.scrollTo($bestOutcome, {
       duration: this.settings.outcomeRevealDuration,
       offset: {
         top: this.settings.outcomeScrollToOffsetTop
@@ -129,6 +127,8 @@ Quiz.prototype.completeQuiz = function ($bestOutcome) {
 
 /**
  * Check if quiz is finished.
+ *
+ * @returns {boolean} true if quiz is complete, false otherwise.
  */
 Quiz.prototype.checkOutcome = function () {
 
@@ -140,6 +140,8 @@ Quiz.prototype.checkOutcome = function () {
   var $bestOutcome = this.pickOutcome(score);
 
   this.completeQuiz($bestOutcome);
+
+  return true;
 };
 
 module.exports = Quiz;
