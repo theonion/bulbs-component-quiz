@@ -15,6 +15,8 @@ QuizMultiple.prototype = Object.create(Quiz.prototype);
 QuizMultiple.prototype.constructor = Quiz;
 
 QuizMultiple.prototype.setupQuestions = function () {
+  var self = this;
+
   this.getQuestions().each(function () {
 
     var $question = $(this);
@@ -55,7 +57,7 @@ QuizMultiple.prototype.isQuizFinished = function () {
     this.$element.find('.check-outcome').show();
 
     // scroll to first unanswered question
-    $(window).scrollTo($unanswered[0], {duration: this.settings.scrollToDuration});
+    $.scrollTo($unanswered[0], {duration: this.settings.scrollToDuration});
   }
 
   return finished;
@@ -63,34 +65,34 @@ QuizMultiple.prototype.isQuizFinished = function () {
 
 QuizMultiple.prototype.calculateScore = function () {
   var scores = {};
+  this.$element
+    .find('form input:checked')
+    .each(function () {
+      var outcomeId = Number($(this).prop('value'));
 
-  var formData = this.$element.find('form').serializeArray();
-  if (formData.length > 0) {
-    for (var i = 0; i < formData.length; i++) {
-      var dataum = formData[i];
-      var outcomeCount = parseInt(datum.value);
-
-      if (!isNaN(outcomeCount)) {
-        // answer corresponds to an outcome, either init or add to outcome value
-        scores[outcomeCount] = scores[outcomeCount] ? scores[outcomeCount] + 1 : 1;
+      if (!isNaN(outcomeId)) {
+        var key = 'outcome-' + outcomeId;
+        scores[key] = scores[key] ? scores[key] + 1 : 1;
       }
-    }
-  } else {
-    // no questions, select first outcome
-    scores[this.$element.find('.outcome').eq(0).data('id')] = 1;
+    });
+
+  if (Object.keys(scores).length === 0) {
+    // no scores yet, just select first outcome
+    scores[this.$element.find('.outcome').eq(0).attr('id')] = 1;
   }
 
   return scores;
 };
 
 QuizMultiple.prototype.pickOutcome = function (scores) {
+  var self = this;
   var $bestOutcome;
   var highScore = 0;
-  scores.keys().forEach(function (key) {
-    var $outcome = $('#outcome-' + key);
+  Object.keys(scores).forEach(function (key) {
+    var $outcome = self.$element.find('#' + key);
     var score = scores[key];
 
-    if ((!$outcome.data('requirePerfect') || score === formData.length) &&
+    if ((!$outcome.data('requirePerfect') || Object.keys(scores).length === 1) &&
         score >= highScore) {
       // either perfect score not required, or it is required and score is perfect,
       //  and it has a higher count than the high score, this is the current best
@@ -98,7 +100,6 @@ QuizMultiple.prototype.pickOutcome = function (scores) {
       highScore = score;
     }
   });
-
   return $bestOutcome;
 };
 

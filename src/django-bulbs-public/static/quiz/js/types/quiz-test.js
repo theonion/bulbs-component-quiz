@@ -76,8 +76,8 @@ QuizTest.prototype.calculateScore = function () {
   var score = 0;
   this.$element
     .find('form input:checked')
-    .each(function (prev, curr) {
-      score += Number($(curr).prop('value'));
+    .each(function () {
+      score += Number($(this).prop('value'));
     });
   return score;
 };
