@@ -47,17 +47,16 @@ describe('QuizTest', function () {
 
   describe('setupQuestions', function () {
 
-    beforeEach(function () {
-      quiz.setupQuestions();
-    });
-
     it('should mark all questions unanswerd', function () {
+      quiz.setupQuestions();
+
       $quizEl.find('.question').each(function () {
         expect($(this).data('unanswered')).toEqual(true);
       });
     });
 
     it('should prevent other answers from being selected after choosing an answer', function () {
+      quiz.setupQuestions();
 
       var $inputs = $quizEl.find('.answer input');
 
@@ -71,6 +70,7 @@ describe('QuizTest', function () {
     });
 
     it('should mark a question answered when one of its answer is selected', function () {
+      quiz.setupQuestions();
 
       var $question = $quizEl.find('.question').eq(0);
 
@@ -80,6 +80,7 @@ describe('QuizTest', function () {
     });
 
     it('should show answer explanation and post answer after choosing an input', function () {
+      quiz.setupQuestions();
 
       var $inputs = $quizEl.find('.answer input');
 
@@ -91,6 +92,30 @@ describe('QuizTest', function () {
       expect($quizEl.find('.answer-explanation').is(':visible')).toEqual(true);
       expect($quizEl.find('.post-answer-body').is(':visible')).toEqual(true);
       expect(window.picturefill).toHaveBeenCalled();
+    });
+
+    it('should add a reveal all class if revealAllAnswers is true', function () {
+      quiz.settings.revealAllAnswers = true;
+
+      quiz.setupQuestions();
+
+      var $question = $quizEl.find('.question').eq(0);
+
+      $question.find('.answer input').eq(0).trigger('change');
+
+      expect($question.hasClass('reveal-all-answers')).toEqual(true);
+    });
+
+    it('should add a reveal single class if revealAllAnswers is false', function () {
+      quiz.settings.revealAllAnswers = false;
+
+      quiz.setupQuestions();
+
+      var $question = $quizEl.find('.question').eq(0);
+
+      $question.find('.answer input').eq(0).trigger('change');
+
+      expect($question.hasClass('reveal-answer')).toEqual(true);
     });
   });
 

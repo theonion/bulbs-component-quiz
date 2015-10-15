@@ -26,9 +26,6 @@ var QuizSetup = function (selector, options) {
     var quizStyle = $el.data('quizStyle');
 
     var type;
-    var settings = $.extend({
-      revealAllAnswers: $el.data('revealAllAnswers') || false
-    }, options);
     switch (quizStyle) {
       case 'cosmo':
         type = QuizCosmode;
@@ -47,7 +44,7 @@ var QuizSetup = function (selector, options) {
     }
 
     if (type) {
-      $el.data('pluginQuiz', new type($el, settings));
+      $el.data('pluginQuiz', new type($el, options));
     }
   });
 };

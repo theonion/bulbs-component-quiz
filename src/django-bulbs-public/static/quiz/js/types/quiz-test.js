@@ -10,7 +10,7 @@ var Quiz = require('./quiz-type-base');
 
 var QuizTest = function (element, options) {
   Quiz.call(this, element, $.extend({
-    revealAllAnswers: false
+    revealAllAnswers: $(element).data('revealAllAnswers') || false
   }, options));
 };
 
@@ -39,7 +39,8 @@ QuizTest.prototype.setupQuestions = function () {
         .show(self.settings.answerRevealDuration, function () {
           window.picturefill(this);
         });
-      $question.addClass(self.revealAllAnswers ? 'reveal-all-answers' : 'reveal-answer');
+
+      $question.addClass(self.settings.revealAllAnswers ? 'reveal-all-answers' : 'reveal-answer');
 
       // reveal post-answer content
       $question.find('.post-answer-body')
