@@ -63,14 +63,12 @@ QuizCosmode.prototype.isQuizFinished = function () {
 };
 
 QuizCosmode.prototype.calculateScore = function () {
-  var formData = this.$element.find('form').serializeArray();
   var score = 0;
-  var i;
-  for (i = 0; i < formData.length; i++) {
-    var datum = formData[i];
-    score += parseInt(datum.value);
-  }
-
+  this.$element
+    .find('form input:checked')
+    .each(function () {
+      score += Number($(this).prop('value'));
+    });
   return score;
 };
 

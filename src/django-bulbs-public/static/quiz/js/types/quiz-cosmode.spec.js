@@ -15,11 +15,9 @@ describe('QuizTest', function () {
           '<div class="question">' +
             '<div class="answer">' +
               '<input type="checkbox" value="0">' +
-              '<div class="answer-explanation" style="display:none"></div>' +
             '</div>' +
             '<div class="answer">' +
               '<input type="checkbox" value="1">' +
-              '<div class="answer-explanation" style="display:none"></div>' +
             '</div>' +
             '<div class="post-answer-body" style="display:none"></div>' +
           '<div>' +
@@ -53,19 +51,6 @@ describe('QuizTest', function () {
       });
     });
 
-    it('should prevent other answers from being selected after choosing an answer', function () {
-
-      var $inputs = $quizEl.find('.answer input');
-
-      expect($inputs.eq(0).prop('disabled')).toEqual(false);
-      expect($inputs.eq(1).prop('disabled')).toEqual(false);
-
-      $inputs.eq(0).trigger('change');
-
-      expect($inputs.eq(0).prop('disabled')).toEqual(true);
-      expect($inputs.eq(1).prop('disabled')).toEqual(true);
-    });
-
     it('should mark a question answered when one of its answer is selected', function () {
 
       var $question = $quizEl.find('.question').eq(0);
@@ -79,12 +64,10 @@ describe('QuizTest', function () {
 
       var $inputs = $quizEl.find('.answer input');
 
-      expect($quizEl.find('.answer-explanation').is(':visible')).toEqual(false);
       expect($quizEl.find('.post-answer-body').is(':visible')).toEqual(false);
 
       $inputs.eq(0).trigger('change');
 
-      expect($quizEl.find('.answer-explanation').is(':visible')).toEqual(true);
       expect($quizEl.find('.post-answer-body').is(':visible')).toEqual(true);
       expect(window.picturefill).toHaveBeenCalled();
     });
