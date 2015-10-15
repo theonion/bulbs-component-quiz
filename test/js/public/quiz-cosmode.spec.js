@@ -39,6 +39,10 @@ describe('QuizCosmode', function () {
     spyOn(window, 'picturefill');
   });
 
+  afterEach(function () {
+    $('body').html('');
+  });
+
   describe('setupQuestions', function () {
 
     beforeEach(function () {

@@ -39,6 +39,10 @@ describe('QuizTally', function () {
     spyOn(window, 'picturefill');
   });
 
+  afterEach(function () {
+    $('body').html('');
+  });
+
   describe('calculateScore', function () {
 
     it('should score based on the number of correctly checked inputs', function () {

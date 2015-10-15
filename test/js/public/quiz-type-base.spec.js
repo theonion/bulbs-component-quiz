@@ -57,6 +57,10 @@ describe('Quiz', function () {
     spyOn(Analytics, 'sendEvent');
   });
 
+  afterEach(function () {
+    $('body').html('');
+  });
+
   describe('getQuestions', function () {
 
     it('should select all questions', function () {
