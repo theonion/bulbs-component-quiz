@@ -1,7 +1,7 @@
 var $ = window.jQuery = require('jquery');
 $.scrollTo = require('jquery.ScrollTo');
 
-var QuizCosmode = require('./quiz-cosmode');
+var QuizCosmode = require('types/quiz-cosmode');
 
 describe('QuizCosmode', function () {
 

@@ -18,7 +18,7 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'src/**/*.spec.js'
+      'test/js/**/*.spec.js'
     ],
 
 
@@ -30,7 +30,7 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-        'src/**/*.spec.js': ['browserify']
+        'test/js/**/*.spec.js': ['browserify']
     },
 
 
@@ -69,7 +69,8 @@ module.exports = function(config) {
     browserify: {
       debug: true,
       paths: [
-        'bower_components'
+        'bower_components',
+        'src/django-bulbs-public/static/quiz/js'
       ],
       configure: function (bundle) {
         bundle.on('prebundle', function () {

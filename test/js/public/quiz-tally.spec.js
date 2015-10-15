@@ -1,7 +1,7 @@
 var $ = window.jQuery = require('jquery');
 $.scrollTo = require('jquery.ScrollTo');
 
-var QuizTally = require('./quiz-tally');
+var QuizTally = require('types/quiz-tally');
 
 describe('QuizTally', function () {
 

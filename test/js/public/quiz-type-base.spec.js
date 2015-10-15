@@ -2,7 +2,7 @@ var $ = window.jQuery = require('jquery');
 $.scrollTo = require('jquery.ScrollTo');
 
 var Analytics = require('bulbs-public-analytics-manager/src/analytics-manager');
-var Quiz = require('./quiz-type-base');
+var Quiz = require('types/quiz-type-base');
 
 describe('Quiz', function () {
 

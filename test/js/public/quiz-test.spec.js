@@ -1,9 +1,9 @@
 var $ = window.jQuery = require('jquery');
 $.scrollTo = require('jquery.ScrollTo');
 
-var QuizMultiple = require('./quiz-multiple');
+var QuizTest = require('types/quiz-test');
 
-describe('QuizMultiple', function () {
+describe('QuizTest', function () {
 
   var quiz;
   var $quizEl;
@@ -14,32 +14,25 @@ describe('QuizMultiple', function () {
         '<form>' +
           '<div class="question">' +
             '<div class="answer">' +
-              '<input type="radio" value="0">' +
+              '<input type="checkbox" value="0">' +
+              '<div class="answer-explanation" style="display:none"></div>' +
             '</div>' +
             '<div class="answer">' +
-              '<input type="radio" value="1">' +
-            '</div>' +
-            '<div class="post-answer-body" style="display:none"></div>' +
-          '<div>' +
-          '<div class="question">' +
-            '<div class="answer">' +
-              '<input type="radio" value="0">' +
-            '</div>' +
-            '<div class="answer">' +
-              '<input type="radio" value="1">' +
+              '<input type="checkbox" value="1">' +
+              '<div class="answer-explanation" style="display:none"></div>' +
             '</div>' +
             '<div class="post-answer-body" style="display:none"></div>' +
           '<div>' +
           '<button class="check-outcome"></button>' +
         '</form>' +
-        '<div class="outcome" id="outcome-0"></div>' +
-        '<div class="outcome" id="outcome-1"></div>' +
+        '<div class="outcome"></div>' +
+        '<div class="outcome"></div>' +
       '</div>'
     );
 
     $('body').append($quizEl);
 
-    quiz = new QuizMultiple($quizEl, {});
+    quiz = new QuizTest($quizEl, {});
 
     // makes animations complete immediately
     $.fx.off = true;
@@ -60,6 +53,19 @@ describe('QuizMultiple', function () {
       });
     });
 
+    it('should prevent other answers from being selected after choosing an answer', function () {
+
+      var $inputs = $quizEl.find('.answer input');
+
+      expect($inputs.eq(0).prop('disabled')).toEqual(false);
+      expect($inputs.eq(1).prop('disabled')).toEqual(false);
+
+      $inputs.eq(0).trigger('change');
+
+      expect($inputs.eq(0).prop('disabled')).toEqual(true);
+      expect($inputs.eq(1).prop('disabled')).toEqual(true);
+    });
+
     it('should mark a question answered when one of its answer is selected', function () {
 
       var $question = $quizEl.find('.question').eq(0);
@@ -69,14 +75,16 @@ describe('QuizMultiple', function () {
       expect($question.data('unanswered')).toEqual(false);
     });
 
-    it('should show post answer after choosing an input', function () {
+    it('should show answer explanation and post answer after choosing an input', function () {
 
       var $inputs = $quizEl.find('.answer input');
 
+      expect($quizEl.find('.answer-explanation').is(':visible')).toEqual(false);
       expect($quizEl.find('.post-answer-body').is(':visible')).toEqual(false);
 
       $inputs.eq(0).trigger('change');
 
+      expect($quizEl.find('.answer-explanation').is(':visible')).toEqual(true);
       expect($quizEl.find('.post-answer-body').is(':visible')).toEqual(true);
       expect(window.picturefill).toHaveBeenCalled();
     });
@@ -137,36 +145,28 @@ describe('QuizMultiple', function () {
 
   describe('calculateScore', function () {
 
-    it('should return an object with a score per outcome', function () {
+    it('should score based on the number of correctly checked inputs', function () {
 
-      $quizEl.find('.answer input').eq(1).prop('checked', true);
+      var $inputs = $quizEl.find('.answer input');
 
-      expect(quiz.calculateScore()['outcome-1']).toEqual(1);
-    });
+      $inputs.eq(1).prop('checked', true);
 
-    it('should return a score of 1 for the first result if no outcomes were scored', function () {
-      expect(quiz.calculateScore()['outcome-0']).toEqual(1);
+      expect(quiz.calculateScore()).toEqual(1);
     });
   });
 
   describe('pickOutcome', function () {
 
-    it('should choose the outcome with the most points', function () {
+    it('should choose the minimum best outcome given a score', function () {
 
       var $outcomes = $quizEl.find('.outcome');
 
-      expect(quiz.pickOutcome({'outcome-0': 1})[0]).toEqual($outcomes[0]);
-      expect(quiz.pickOutcome({'outcome-0': 1, 'outcome-1': 2})[0]).toEqual($outcomes[1]);
-    });
+      $outcomes.eq(0).data('minScore', 2);
+      $outcomes.eq(1).data('minScore', 0);
 
-    it('should choose a perfect outcome only if all points go to that outcome', function () {
-
-      var $outcomes = $quizEl.find('.outcome');
-      $outcomes.eq(0).data('requirePerfect', true);
-
-      expect(quiz.pickOutcome({'outcome-0': 5})[0]).toEqual($outcomes[0]);
-      expect(quiz.pickOutcome({'outcome-0': 3, 'outcome-1': 2})[0]).toEqual($outcomes[1]);
-      expect(quiz.pickOutcome({'outcome-0': 2, 'outcome-1': 2})[0]).toEqual($outcomes[1]);
+      expect(quiz.pickOutcome(0)[0]).toEqual($outcomes[1]);
+      expect(quiz.pickOutcome(1)[0]).toEqual($outcomes[1]);
+      expect(quiz.pickOutcome(2)[0]).toEqual($outcomes[0]);
     });
   });
 });
