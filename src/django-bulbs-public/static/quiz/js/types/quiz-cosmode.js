@@ -14,6 +14,8 @@ QuizCosmode.prototype = Object.create(Quiz.prototype);
 QuizCosmode.prototype.constructor = Quiz;
 
 QuizCosmode.prototype.setupQuestions = function () {
+  var self = this;
+
   this.getQuestions().each(function () {
 
     var $question = $(this);
@@ -29,9 +31,10 @@ QuizCosmode.prototype.setupQuestions = function () {
         $question.data('unanswered', false);
 
         // reveal post-answer content
-        $question.find('.post-answer-body').show(100, function () {
-          window.picturefill(this);
-        });
+        $question.find('.post-answer-body')
+          .show(self.settings.answerRevealDuration, function () {
+            window.picturefill(this);
+          });
       });
     });
   });
@@ -53,7 +56,7 @@ QuizCosmode.prototype.isQuizFinished = function () {
     this.$element.find('.check-outcome').show();
 
     // scroll to first unanswered question
-    $(window).scrollTo($unanswered[0], {duration: 250});
+    $(window).scrollTo($unanswered[0], {duration: this.settings.scrollToDuration});
   }
 
   return finished;

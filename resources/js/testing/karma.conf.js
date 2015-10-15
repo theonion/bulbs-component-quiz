@@ -70,7 +70,13 @@ module.exports = function(config) {
       debug: true,
       paths: [
         'bower_components'
-      ]
+      ],
+      configure: function (bundle) {
+        bundle.on('prebundle', function () {
+          bundle.require('jquery/dist/jquery.js', {expose: 'jquery'});
+          bundle.require('jquery.scrollTo/jquery.ScrollTo.js', {expose: 'jquery.ScrollTo'});
+        });
+      }
     }
-  })
-}
+  });
+};

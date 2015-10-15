@@ -17,6 +17,8 @@ var Quiz = function (element, options) {
       },
       outcomeRevealDuration: 500,
       outcomeScrollToOffsetTop: -20,
+      answerRevealDuration: 100,
+      scrollToDuration: 250,
       sendAnalytics: false
     }, options);
 

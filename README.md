@@ -65,11 +65,18 @@ Django's settings file.
 ## Development
 To work on this project, install all requirements:
 ```bash
-$ npm install && bower install
+$ npm install && bower install && pip install -e .
 ```
 
+### Testing Javascript
+To do a single run of tests:
 ```bash
-$ pip install -e .
+$ npm test
+```
+
+Or to run tests while you develop them:
+```bash
+$ npm run test-watch
 ```
 
 ### django-bulbs-cms Package
