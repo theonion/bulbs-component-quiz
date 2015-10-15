@@ -17,7 +17,6 @@
   }
 
   .answer {
-    cursor: pointer;
 
     &:first-child {
       margin-top: 0;
@@ -25,12 +24,15 @@
 
     label {
       display: block;
-      cursor: inherit;
       position: relative;
     }
 
     input {
       display: none;
+
+      &:not([disabled]) + label {
+        cursor: pointer;
+      }
     }
   }
 
