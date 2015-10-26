@@ -1,0 +1,72 @@
+<div
+    class="quiz-container quiz-style-{{ content.quiz_style }}"
+    data-quiz-style="{{ content.quiz_style }}"
+    data-track-category="Article: Quiz"
+    {% if content.show_all_answers %}data-reveal-all-answers="true"{% endif %}>
+  <noscript>
+    Our state-of-the-art quizzes require JavaScript.
+  </noscript>
+  <form>
+    <ol class="questions">
+
+      {% for question in content.question_set.all %}
+        <li class="question {% block type %}{% endblock %}">
+          <dl class="{% if question.answer_set.all.0.detail_image %}layout-grid{% else %}layout-stacked{% endif %}">
+
+            {% include "quiz/partials/prompt.html" %}
+
+            <div class="row">
+              {% for answer in question.answer_set.all %}
+                <div
+                    class="
+                      answer
+                      {% if answer.is_correct %}correct{% else %}wrong{% endif %}"
+                    {% block answer_data %}{% endblock %}>
+
+                  <div class="answer-body">
+                    {% block answer_body %}{% endblock %}
+                  </div>
+
+                  {% if answer.explanation %}
+                    <div class="answer-explanation">
+                      {{ answer.explanation|safe }}
+                    </div>
+                  {% endif %}
+
+                </div>
+
+                {% if forloop.counter|divisibleby:2 %}
+                  </div>
+                  <div class="row">
+                {% endif %}
+              {% endfor %}
+            </div>
+
+            {# Any immediate result #}
+            {% if question.post_answer_body %}
+              <div class="row post-answer-body">
+                {{ question.post_answer_body|safe }}
+              </div>
+            {% endif %}
+          </dl>
+        </li>
+      {% endfor %}
+
+    </ol>
+
+    {% block button %}
+      <noscript>
+        You need to enable JavaScript in order to get your results.
+      </noscript>
+      <button
+          class="check-outcome"
+          type="submit"
+          data-track-action="Submit"
+          data-track-label="#">
+        {{ content.result_button_text|default:"Get results" }}
+      </button>
+    {% endblock %}
+  </form>
+
+  {% include "quiz/partials/outcome_list.html" with outcome_set=content.outcome_set share_partial_template=share_partial_template %}
+</div>

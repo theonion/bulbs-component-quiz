@@ -1,0 +1,28 @@
+{% extends "quiz/partials/quiz_base_detail.html" %}
+
+{% block type %}multiple-choice{% endblock %}
+
+{% block answer_data %}
+  {% if answer.outcome_id %}data-outcome="{{ answer.outcome_id }}"{% endif %}
+{% endblock %}
+
+{% block answer_body %}
+  <input
+      id="answer-{{ answer.id }}"
+      type="radio"
+      name="question-{{ question.id }}"
+      value="{{ answer.outcome_id }}">
+
+  <label
+      for="answer-{{ answer.id }}"
+      class="{% if answer.detail_image %}has-image{% endif %}">
+
+    <div class="answer-container content-box">
+      {% include "quiz/partials/image.html" %}
+
+      <div class="inner">
+        {{ answer.body|safe }}
+      </div>
+    </div>
+  </label>
+{% endblock %}
