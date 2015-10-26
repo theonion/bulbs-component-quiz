@@ -20,11 +20,10 @@
                 <div
                     class="
                       answer
-                      {% if answer.detail_image %}image{% endif %}
                       {% if answer.is_correct %}correct{% else %}wrong{% endif %}"
                     {% block answer_data %}{% endblock %}>
 
-                  <div class="answer-answers">
+                  <div class="answer-body">
                     {% block answer_body %}{% endblock %}
                   </div>
 

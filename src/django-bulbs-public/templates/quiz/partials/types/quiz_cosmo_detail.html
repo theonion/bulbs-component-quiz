@@ -3,7 +3,7 @@
 {% block type %}multiple-choice cosmode{% endblock %}
 
 {% block answer_data %}
-  data-outcome="{{ answer.outcome_id }}"
+  {% if answer.outcome_id %}data-outcome="{{ answer.outcome_id }}"{% endif %}
 {% endblock %}
 
 {% block answer_body %}
