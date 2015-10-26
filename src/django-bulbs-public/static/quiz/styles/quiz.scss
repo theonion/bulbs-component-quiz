@@ -39,7 +39,7 @@
 
       &[data-correct='True'] {
         background-color: #bfdfb7;
-        border-color: 2px solid #90c782;
+        border: 2px solid #90c782;
       }
 
       &[data-correct='False'] {
@@ -52,14 +52,6 @@
   .answer-explanation {
     cursor: default;
     display: none;
-
-    .correct-answer & {
-      color: #27af4a;
-    }
-
-    .wrong-answer & {
-      color: #ce2026;
-    }
   }
 
   .reveal-all-answers, .reveal-answer {

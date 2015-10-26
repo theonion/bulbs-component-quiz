@@ -8,24 +8,22 @@
 {% endblock %}
 
 {% block answer_body %}
-  <div>
-    <input
-        id="answer-{{ answer.id }}"
-        type="radio"
-        name="question-{{ question.id }}"
-        value="{% if answer.is_correct %}1{% else %}0{% endif %}">
+  <input
+      id="answer-{{ answer.id }}"
+      type="radio"
+      name="question-{{ question.id }}"
+      value="{% if answer.is_correct %}1{% else %}0{% endif %}">
 
-    <label
-        for="answer-{{ answer.id }}"
-        class="{% if answer.detail_image %}has-image{% endif %}">
+  <label
+      for="answer-{{ answer.id }}"
+      class="{% if answer.detail_image %}has-image{% endif %}">
 
-      <div class="answer-container content-box">
-        {% include "quiz/partials/image.html" %}
+    <div class="answer-container content-box">
+      {% include "quiz/partials/image.html" %}
 
-        <div class="inner">
-          {{ answer.body|safe }}
-        </div>
+      <div class="inner">
+        {{ answer.body|safe }}
       </div>
-    </label>
-  </div>
+    </div>
+  </label>
 {% endblock %}

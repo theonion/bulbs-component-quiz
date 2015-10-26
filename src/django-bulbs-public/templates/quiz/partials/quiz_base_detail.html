@@ -21,7 +21,9 @@
                     class="answer {% if answer.detail_image %}image{% endif %}"
                     {% block answer_data %}{% endblock %}>
 
-                  {% block answer_body %}{% endblock %}
+                  <div class="answer-answers">
+                    {% block answer_body %}{% endblock %}
+                  </div>
 
                   {% if answer.explanation %}
                     <div class="answer-explanation">
