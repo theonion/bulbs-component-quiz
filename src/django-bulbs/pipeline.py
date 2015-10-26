@@ -34,7 +34,7 @@ public_css = PipelineWrapper()
 public_css \
     .set_name("quiz") \
     .set_output_filename("css/quiz.css") \
-    .add_source_filename("quiz/styles/quiz.less")
+    .add_source_filename("quiz/styles/quiz.scss")
 
 cms_js = PipelineWrapper()
 cms_js \
@@ -46,6 +46,4 @@ public_js = PipelineWrapper()
 public_js \
     .set_name("quiz") \
     .set_output_filename("js/quiz.js") \
-    .add_source_filename("velocity/jquery.velocity.min.js") \
-    .add_source_filename("velocity/velocity.ui.min.js") \
     .add_source_filename("quiz/js/quiz.js")

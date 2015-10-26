@@ -29,9 +29,6 @@ class Quiz(models.Model):
         help_text="Immediately show all answers for test-style quizzes upon selection.")
     result_button_text = models.CharField(max_length=512, blank=True, default="")
 
-    def get_template(self):
-        return "quiz/partials/quiz_{}_detail.html".format(self.quiz_style)
-
     class Meta:
         abstract = True
 

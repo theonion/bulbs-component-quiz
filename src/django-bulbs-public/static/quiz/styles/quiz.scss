@@ -1,0 +1,54 @@
+.quiz-container {
+
+  ul, ol {
+    padding-left: 0;
+    list-style: none;
+    margin-top: 0;
+  }
+
+  .question .row.post-answer-body {
+    display: none;
+  }
+
+  &.completed .question {
+    &, label {
+      cursor: default;
+    }
+  }
+
+  .answer {
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    label {
+      display: block;
+      position: relative;
+    }
+
+    input {
+      display: none;
+
+      &:not([disabled]) + label {
+        cursor: pointer;
+      }
+    }
+  }
+
+  .answer-explanation {
+    cursor: default;
+    display: none;
+  }
+
+  .reveal-all-answers, .reveal-answer {
+
+    &[data-unanswered=false] label {
+      cursor: default;
+    }
+  }
+
+  .outcomes {
+    display: none;
+  }
+}

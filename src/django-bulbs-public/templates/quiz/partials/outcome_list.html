@@ -1,0 +1,51 @@
+{% load betty %}
+
+<div class="outcomes">
+  {% for outcome in outcome_set.all %}
+    <div
+        id="outcome-{{ outcome.id }}"
+        class="outcome"
+        data-id="{{ outcome.id }}"
+        data-min-score="{{ outcome.min_score }}"
+        {% if outcome.require_perfect %}
+          data-require-perfect="true"
+        {% endif %}>
+
+      <h2 class="quiz-title">
+        <span class="sr-only">Results for </span>
+        {{ content.title|removetags:"p br"|safe }}
+      </h2>
+
+      {% if outcome.detail_image %}
+        <figure class="thumb">
+          {% cropped outcome.detail_image %}
+          {% if outcome.detail_image.caption %}
+            <figcaption>
+              {{ outcome.detail_image.caption }}
+            </figcaption>
+          {% endif %}
+        </figure>
+      {% endif %}
+
+      <div class="outcome-desc">
+        <h3 class="quiz-outcome">
+          {{ outcome.title }}
+        </h3>
+        {{ outcome.body|safe }}
+      </div>
+
+      {% if outcome.shareable %}
+        <div
+            class="shareable"
+            data-track-action="Share Result">
+          <h3 class="shareable-title">
+            Share Your Results
+          </h3>
+          {% with share_title="I got: "|add:outcome.title|add:" - "|add:content.title|safe %}
+            {% include share_partial_template %}
+          {% endwith %}
+        </div>
+      {% endif %}
+    </div>
+  {% endfor %}
+</div>
