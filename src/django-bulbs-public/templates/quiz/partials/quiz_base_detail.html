@@ -18,7 +18,10 @@
             <div class="row">
               {% for answer in question.answer_set.all %}
                 <div
-                    class="answer {% if answer.detail_image %}image{% endif %}"
+                    class="
+                      answer
+                      {% if answer.detail_image %}image{% endif %}
+                      {% if answer.is_correct %}correct{% else %}wrong{% endif %}"
                     {% block answer_data %}{% endblock %}>
 
                   <div class="answer-answers">

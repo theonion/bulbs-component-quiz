@@ -34,19 +34,6 @@
         cursor: pointer;
       }
     }
-
-    .reveal-all-answers & {
-
-      &[data-correct='True'] {
-        background-color: #bfdfb7;
-        border: 2px solid #90c782;
-      }
-
-      &[data-correct='False'] {
-        background-color: #e8aeae;
-        border: 2px solid #d77272;
-      }
-    }
   }
 
   .answer-explanation {
