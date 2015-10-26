@@ -2,7 +2,7 @@
   "description": "Do not install via npm.",
   "private": true,
   "scripts": {
-    "build_cms_for_django": "./node_modules/.bin/grunt build_cms_for_django",
+    "build_cms_for_django": "./node_modules/.bin/grunt bulbs_cms_dist",
     "test": "./node_modules/.bin/karma start resources/js/testing/karma.conf.js --single-run",
     "test-watch": "./node_modules/.bin/karma start resources/js/testing/karma.conf.js"
   },

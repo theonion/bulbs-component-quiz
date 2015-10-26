@@ -1,7 +1,7 @@
 {
   "name": "bulbs-component-quiz",
   "description": "Frontend dependencies for Quiz component.",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": true,
   "main": [
     "compat-builds/bulbs-cms-dist/quiz.js",

@@ -43,7 +43,8 @@ quiz-edit-questions-question .editor-wrapper {
   margin-bottom: 15px; }
   quiz-edit-questions-question .editor-wrapper .editor {
     border: 1px solid #cccccc;
-    border-radius: 3px; }
+    border-radius: 3px;
+    overflow: auto; }
   quiz-edit-questions-question .editor-wrapper[role='singleline'] .editorPlaceholder {
     padding: 5px; }
   quiz-edit-questions-question .editor-wrapper[role='singleline'] .editor {
