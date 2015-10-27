@@ -27,31 +27,28 @@ quiz-edit .quiz-panel-toolbar {
   float: right; }
   quiz-edit .quiz-panel-toolbar .btn-group {
     margin-left: 5px; }
+quiz-edit .editor-wrapper {
+  margin-bottom: 15px; }
+  quiz-edit .editor-wrapper .editor {
+    border: 1px solid #cccccc;
+    border-radius: 3px;
+    overflow: auto; }
+  quiz-edit .editor-wrapper[role='singleline'] .editorPlaceholder {
+    padding: 5px; }
+  quiz-edit .editor-wrapper[role='singleline'] .editor {
+    padding: 5px; }
+  quiz-edit .editor-wrapper[role='multiline'] .editorPlaceholder {
+    padding: 24px 12px; }
+  quiz-edit .editor-wrapper[role='multiline'] .editor {
+    padding: 12px; }
+    quiz-edit .editor-wrapper[role='multiline'] .editor p {
+      margin: 12px 0; }
 
 quiz-edit-outcomes {
   display: block; }
 
 quiz-edit-outcomes-outcome {
   display: block; }
-  quiz-edit-outcomes-outcome textarea {
-    resize: vertical; }
 
 quiz-edit-questions {
   display: block; }
-
-quiz-edit-questions-question .editor-wrapper {
-  margin-bottom: 15px; }
-  quiz-edit-questions-question .editor-wrapper .editor {
-    border: 1px solid #cccccc;
-    border-radius: 3px;
-    overflow: auto; }
-  quiz-edit-questions-question .editor-wrapper[role='singleline'] .editorPlaceholder {
-    padding: 5px; }
-  quiz-edit-questions-question .editor-wrapper[role='singleline'] .editor {
-    padding: 5px; }
-  quiz-edit-questions-question .editor-wrapper[role='multiline'] .editorPlaceholder {
-    padding: 24px 12px; }
-  quiz-edit-questions-question .editor-wrapper[role='multiline'] .editor {
-    padding: 12px; }
-    quiz-edit-questions-question .editor-wrapper[role='multiline'] .editor p {
-      margin: 12px 0; }
