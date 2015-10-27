@@ -66,7 +66,7 @@ class QuizOutcome(models.Model):
     """A potential result for a quiz."""
 
     title = models.TextField(blank=True, default="")
-    shareable = models.BooleanField(default=True)
+    shareable = models.BooleanField(default=False)
 
     # for "tally" & "quiz" types
     min_score = models.IntegerField(blank=True, default=0)
