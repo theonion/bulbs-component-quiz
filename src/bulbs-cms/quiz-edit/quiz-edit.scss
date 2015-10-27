@@ -52,4 +52,42 @@ quiz-edit {
       margin-left: 5px;
     }
   }
+
+  .editor-wrapper {
+    margin-bottom: 15px;
+
+    .editor {
+      border: 1px solid #cccccc;
+      border-radius: 3px;
+      overflow: auto;
+    }
+
+    &[role='singleline'] {
+      $editorSpacing: 5px;
+
+      .editorPlaceholder {
+        padding: $editorSpacing;
+      }
+
+      .editor {
+        padding: $editorSpacing;
+      }
+    }
+
+    &[role='multiline'] {
+      $editorSpacing: 12px;
+
+      .editorPlaceholder {
+        padding: $editorSpacing * 2 $editorSpacing;
+      }
+
+      .editor {
+        padding: $editorSpacing;
+
+        p {
+          margin: $editorSpacing 0;
+        }
+      }
+    }
+  }
 }
