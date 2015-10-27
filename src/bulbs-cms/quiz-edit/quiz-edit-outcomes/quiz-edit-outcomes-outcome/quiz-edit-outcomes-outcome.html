@@ -1,22 +1,19 @@
 <div class="col-sm-7">
   <div class="form-group">
     <label for="quizEditOutcomesOutcomeHeadline{{ uuid }}">Result Headline</label>
-    <input
-        id="quizEditOutcomesOutcomeHeadline{{ uuid }}"
-        class="form-control"
-        type="text"
+    <onion-editor
         ng-model="outcome.title"
-        placeholder="Title of result">
+        role="singleline"
+        placeholder="Title of result"
+        formatting="bold,italic,strike">
   </div>
 
   <div class="form-group">
     <label for="quizEditOutcomesOutcomeDescription{{ uuid }}">Result Description</label>
-    <textarea
-        id="quizEditOutcomesOutcomeDescription{{ uuid }}"
-        class="form-control"
-        rows="3"
-        ng-model="outcome.body"
-        placeholder="Description of result">
+    <onion-editor
+        ng-model="answer.body"
+        role="multiline"
+        placeholder="Answer Explanation">
     </textarea>
   </div>
 
