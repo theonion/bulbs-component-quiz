@@ -19,7 +19,7 @@ angular.module('bulbs.quiz.edit.questions.question', [
           };
 
           $scope.answerMove = function (index, indexTo) {
-            Utils.moveTo($scope.question.answer_set, index, indexTo);
+            var resp = Utils.moveTo($scope.question.answer_set, index, indexTo);
           };
 
           $scope.answerDelete = function (answer, index) {

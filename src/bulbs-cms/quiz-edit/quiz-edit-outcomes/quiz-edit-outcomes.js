@@ -17,7 +17,8 @@ angular.module('bulbs.quiz.edit.outcomes', [
             };
 
             $scope.outcomeMove = function (index, indexTo) {
-              Utils.moveTo($scope.outcomes, index, indexTo);
+              // check for response
+              var resp = Utils.moveTo($scope.outcomes, index, indexTo);
             };
 
             $scope.outcomeDelete = function (outcome, index) {
