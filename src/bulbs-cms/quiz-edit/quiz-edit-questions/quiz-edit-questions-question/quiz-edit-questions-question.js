@@ -2,6 +2,7 @@
 
 angular.module('bulbs.quiz.edit.questions.question', [
   'bulbs.quiz.questions.question.answer',
+  'bulbs.quiz.utils',
   'confirmationModal.factory',
   'restangular',
   'utils'
@@ -11,8 +12,8 @@ angular.module('bulbs.quiz.edit.questions.question', [
   .directive('quizEditQuestionsQuestion', function () {
     return {
       controller: [
-        '$scope', 'ConfirmationModal', 'Restangular', 'Utils',
-        function ($scope, ConfirmationModal, Restangular, Utils) {
+        '$scope', 'ConfirmationModal', 'QuizUtils', 'Restangular', 'Utils',
+        function ($scope, ConfirmationModal, QuizUtils, Restangular, Utils) {
 
           var restangularize = function (data) {
             return Restangular.restangularizeElement(null, data, 'answer');
@@ -20,6 +21,7 @@ angular.module('bulbs.quiz.edit.questions.question', [
 
           $scope.answerMove = function (index, indexTo) {
             Utils.moveTo($scope.question.answer_set, index, indexTo);
+            QuizUtils.fixOrderingProperty($scope.question.answer_set);
           };
 
           $scope.answerDelete = function (answer, index) {
@@ -28,6 +30,7 @@ angular.module('bulbs.quiz.edit.questions.question', [
               restangularize(answer).remove()
                 .then(function () {
                   Utils.removeFrom($scope.question.answer_set, index);
+                  QuizUtils.fixOrderingProperty($scope.question.answer_set);
                 })
                 .catch(function () {
                   // TODO : hook in with an alert service to display error
@@ -52,6 +55,7 @@ angular.module('bulbs.quiz.edit.questions.question', [
               .then(function (data) {
                 newAnswer.id = data.id;
                 $scope.question.answer_set.push(newAnswer);
+                QuizUtils.fixOrderingProperty($scope.question.answer_set);
               })
               .catch(function () {
                 // TODO : hook in with an alert service to display error
