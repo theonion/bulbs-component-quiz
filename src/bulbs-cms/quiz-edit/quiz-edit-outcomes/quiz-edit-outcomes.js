@@ -2,6 +2,7 @@
 
 angular.module('bulbs.quiz.edit.outcomes', [
   'bulbs.quiz.edit.outcomes.outcome',
+  'bulbs.quiz.utils',
   'confirmationModal.factory',
   'restangular',
   'utils'
@@ -9,8 +10,8 @@ angular.module('bulbs.quiz.edit.outcomes', [
     .directive('quizEditOutcomes', function () {
       return {
         controller: [
-          '$scope', 'ConfirmationModal', 'Restangular', 'Utils',
-          function ($scope, ConfirmationModal, Restangular, Utils) {
+          '$scope', 'ConfirmationModal', 'QuizUtils', 'Restangular', 'Utils',
+          function ($scope, ConfirmationModal, QuizUtils, Restangular, Utils) {
 
             var restangularize = function (data) {
               return Restangular.restangularizeElement(null, data, 'outcome');
@@ -18,6 +19,8 @@ angular.module('bulbs.quiz.edit.outcomes', [
 
             $scope.outcomeMove = function (index, indexTo) {
               Utils.moveTo($scope.outcomes, index, indexTo);
+
+              QuizUtils.fixOrderingProperty($scope.outcomes);
             };
 
             $scope.outcomeDelete = function (outcome, index) {
@@ -26,6 +29,7 @@ angular.module('bulbs.quiz.edit.outcomes', [
                 restangularize(outcome).remove()
                   .then(function () {
                     Utils.removeFrom($scope.outcomes, index);
+                    QuizUtils.fixOrderingProperty($scope.outcomes);
                   })
                   .catch(function () {
                     // TODO : hook in with an alert service to display error
@@ -51,6 +55,7 @@ angular.module('bulbs.quiz.edit.outcomes', [
                 .then(function (data) {
                   newOutcome.id = data.id;
                   $scope.outcomes.push(newOutcome);
+                  QuizUtils.fixOrderingProperty($scope.outcomes);
                 })
                 .catch(function () {
                   // TODO : hook in with an alert service to display error
