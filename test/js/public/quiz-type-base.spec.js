@@ -190,7 +190,7 @@ describe('Quiz', function () {
       quiz.completeQuiz($bestOutcome);
 
       expect($bestOutcome.is(':visible')).toEqual(true);
-      expect(window.picturefill).toHaveBeenCalledWith($bestOutcome);
+      expect(window.picturefill).toHaveBeenCalledWith($bestOutcome.find('.image')[0]);
     });
 
     it('should scroll to the best outcome', function () {
