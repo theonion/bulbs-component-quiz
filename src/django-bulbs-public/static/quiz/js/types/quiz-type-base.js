@@ -109,7 +109,7 @@ Quiz.prototype.completeQuiz = function ($bestOutcome) {
 
     var self = this;
     $bestOutcome.show(this.settings.outcomeRevealDuration, function () {
-      window.picturefill($bestOutcome.find('.image')[0]);
+      window.picturefill($bestOutcome.find('.image')[0], true);
     });
 
     $.scrollTo($bestOutcome, {
