@@ -18,7 +18,7 @@
     "setup.py"
   ],
   "dependencies": {
-    "bulbs-public-analytics-manager": "https://0469c955e10241b40fffe0225e29a3c238aadf69:x-oauth-basic@github.com/theonion/bulbs-public-analytics-manager.git#~0.1.0",
+    "bulbs-public-analytics-manager": "https://github.com/theonion/bulbs-public-analytics-manager.git#~0.1.0",
     "font-awesome": "~4.4.0",
     "bootstrap": "~3.3.5",
     "angular-uuid4": "~0.3.0",
